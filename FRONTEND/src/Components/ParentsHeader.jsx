@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MenuIcon, X } from "lucide-react";
+import { MenuIcon, X, DoorOpen } from "lucide-react";
 import GreenButton from "./GreenButton";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 
@@ -41,7 +41,7 @@ const ParentsHeader = () => {
           </Link>
         </span>
 
-        <span className="flex w-50 items-center gap-x-5">
+        <span className="flex w-80 items-center gap-x-5">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -58,7 +58,7 @@ const ParentsHeader = () => {
           >
             ADMISSION
           </NavLink>
-          <GreenButton onClick={() => navigate("/tuition")} Label={"Login"} />
+          <GreenButton onClick={() => navigate("/")} Label={<DoorOpen size={16} Ptitle={"Log Out"}/>} /> 
         </span>
       </div>
       {sidebar && (
