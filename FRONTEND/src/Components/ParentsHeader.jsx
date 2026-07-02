@@ -6,8 +6,8 @@ import { NavLink, useNavigate, Link } from "react-router-dom";
 const ParentsHeader = () => {
   const [sidebar, setSideBar] = useState(false);
   const navigate = useNavigate();
-    
- return (
+
+  return (
     <div className="font-[Poppins]">
       <div className="relative z-50 flex w-full items-center justify-around bg-bone p-3 text-xs inset-shadow-small lg:hidden">
         <MenuIcon
@@ -41,7 +41,7 @@ const ParentsHeader = () => {
           </Link>
         </span>
 
-        <span className="flex w-80 items-center gap-x-5">
+        <span className="ml-auto flex items-center justify-end gap-x-5">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -58,8 +58,17 @@ const ParentsHeader = () => {
           >
             ADMISSION
           </NavLink>
-          <GreenButton onClick={() => navigate("/")} Label={<DoorOpen size={16} Ptitle={"Log Out"}/>} /> 
+          <NavLink
+            to="admission"
+            className={({ isActive }) =>
+              `${isActive ? " text-swamp-green" : " "} `
+            }
+          >
+            PARENTS PORTAL
+          </NavLink>
+          <GreenButton onClick={() => navigate("/tuition")} Label={"Login"} />
         </span>
+        
       </div>
       {sidebar && (
         <div className="fixed top-0 z-50 h-full w-full bg-neutral-500/50">
