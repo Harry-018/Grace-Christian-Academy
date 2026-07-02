@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MenuIcon, X, DoorOpen } from "lucide-react";
+import { MenuIcon, X, LogOut } from "lucide-react";
 import GreenButton from "./GreenButton";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 
@@ -56,17 +56,20 @@ const ParentsHeader = () => {
               `${isActive ? " text-swamp-green" : " "} `
             }
           >
-            ADMISSION
+            CONTACT US
           </NavLink>
           <NavLink
-            to="admission"
+            to="/"
             className={({ isActive }) =>
               `${isActive ? " text-swamp-green" : " "} `
             }
           >
             PARENTS PORTAL
           </NavLink>
-          <GreenButton onClick={() => navigate("/tuition")} Label={"Login"} />
+          <GreenButton onClick={() => navigate("/")}>
+          <LogOut size={16} />
+            Log Out
+          </GreenButton>
         </span>
         
       </div>
