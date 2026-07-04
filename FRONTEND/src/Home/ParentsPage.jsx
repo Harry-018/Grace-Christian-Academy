@@ -1,7 +1,52 @@
 import React from 'react'
 import StudentInfo from '../Components/ParentsComponents/StudentInfo'
 import Announcement from '../Components/ParentsComponents/Announcement'
-import PerformanceCard from '../Components/ParentsComponents/PerformanceCard'
+import RatingCard from '../Components/ParentsComponents/RatingCard'
+
+const assessmentData = [
+  {
+    id: 1,
+    title: "Speaking",
+    overall: 4,
+    ratings: [
+      { name: "Pronunciation", score: 4 },
+      { name: "Fluency", score: 4 },
+      { name: "Confidence", score: 4 },
+    ],
+  },
+  {
+    id: 2,
+    title: "Listening",
+    overall: 5,
+    ratings: [
+      { name: "Comprehension", score: 5 },
+      { name: "Attention", score: 5 },
+      { name: "Accuracy", score: 5 },
+    ],
+  },
+  {
+    id: 3,
+    title: "Participation",
+    overall: 5,
+    ratings: [
+      { name: "Activeness", score: 5 },
+      { name: "Sportmanship", score: 5 },
+      { name: "Recitation", score: 5 },
+    ],
+  },
+  {
+    id: 4,
+    title: "Socializing",
+    overall: 3,
+    ratings: [
+      { name: "Helpfulness", score: 5 },
+      { name: "Companionship", score: 5 },
+      { name: "Kindness", score: 5 },
+    ],
+  },
+  
+  
+];
 
 const ParentsPage = () => {
   return (
@@ -51,39 +96,17 @@ const ParentsPage = () => {
         <div className="flex flex-col gap-4 p-5">
           <span className="text-lg font-[PoppinsBold] text-swamp-green">Student Performance</span>
         </div>
-
-        <div className="flex scroll-smooth snap-x snap-mandatory gap-7 overflow-x-auto px-5 py-5 no-scrollbar">
-          <PerformanceCard 
-            head="Speaking"
-            des1="Pronounciation"
-            des2="Fluency"
-            des3="Confidence"
-          />
-
-          <PerformanceCard 
-            head="Speaking"
-            des1="Pronounciation"
-            des2="Fluency"
-            des3="Confidence"
-          />
-
-          <PerformanceCard 
-            head="Speaking"
-            des1="Pronounciation"
-            des2="Fluency"
-            des3="Confidence"
-          />
-
-          <PerformanceCard 
-            head="Speaking"
-            des1="Pronounciation"
-            des2="Fluency"
-            des3="Confidence"
-          />
-        </div>
-
-
-      </div>
+        <div className="grid grid-cols-1 gap-3 p-8 md:grid-cols-2 lg:flex-cols-3 xl:grid-cols-4 overflow-x-auto">
+      {assessmentData.map((card) => (
+        <RatingCard
+          key={card.id}
+          title={card.title}
+          overall={card.overall}
+          ratings={card.ratings}
+        />
+      ))}
+    </div>
+  </div>
   )
 }
 
