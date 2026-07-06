@@ -15,7 +15,7 @@ import TuitionPage from "./Home/TuitionPage.jsx";
 import Form from "./Home/Form.jsx";
 
 import RootLayout from "./Layout/RootLayout.jsx";
-import ParentsPage from "./Home/ParentsPage.jsx";
+import ParentsDashboard from "./Home/ParentsDashboard.jsx";
 import ParentsLayout from "./Layout/ParentsLayout.jsx";
 
 const App = () => {
@@ -30,7 +30,7 @@ const App = () => {
         <Route path="form" element={<Form />} />
       </Route>, 
       <Route path="/parents" element={<ParentsLayout />}>
-        <Route index element={<ParentsPage />} />
+        <Route index element={<ParentsDashboard />} />
       </Route>,
       </>
       

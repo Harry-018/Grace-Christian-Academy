@@ -64,7 +64,7 @@ const ParentsHeader = () => {
               `${isActive ? " text-swamp-green" : " "} `
             }
           >
-            PARENTS PORTAL
+            STUDENT RATING
           </NavLink>
           <GreenButton onClick={() => navigate("/")}>
           <LogOut size={16} />

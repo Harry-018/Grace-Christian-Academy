@@ -1,6 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import ParentsHeader from "../Components/ParentsHeader";
+import Footer from "../Components/Footer";
+import Copyright from "../Components/Copyright";
 
 const ParentsLayout = () => {
   return (
@@ -10,6 +12,9 @@ const ParentsLayout = () => {
       <div className="h-full justify-center bg-egg font-[Poppins] text-egg-dark">
         <Outlet />
       </div>
+
+      <Footer />
+      <Copyright />
     </div>
   );
 };
