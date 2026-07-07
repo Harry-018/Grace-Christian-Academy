@@ -13,7 +13,7 @@ const ParentsDashboard = () => {
               alt="logo"
               className="w-16 sm:w-20 rounded-full object-cover shrink-0"
             />
-            <span className="text-xl sm:text-2xl md:text-3xl font-[PoppinsBold] text-black hover:text-2xl duration-300">
+            <span className="text-3xl sm:text-2xl md:text-4xl font-[PoppinsBold] text-swamp-green hover:text-2xl duration-300">
               Bautista, Sofia Anne
             </span>
           </div>
@@ -32,8 +32,8 @@ const ParentsDashboard = () => {
         <span className="flex text-base sm:text-lg font-[PoppinsBold] text-swamp-green">
           Announcements
         </span>
-        <div className="overflow-x-auto -mx-2 px-2 py-4">
-          <div className="flex gap-4 px-2 lg:grid lg:grid-cols-3 lg:gap-5 lg:px-0 snap-mandatory">
+        <div className="overflow-x-auto no-scrollbar-mx-2 px-2 py-4 snap-mandatory scroll-smooth md:scroll-auto gap-x-5">
+          <div className="flex gap-4 px-2 lg:grid lg:grid-cols-3 lg:gap-5 lg:px-0 ">
             <Announcement
             Atitle={"AWARDING CEREMONY"}
             date={"July 05, 2026"}
@@ -51,6 +51,18 @@ const ParentsDashboard = () => {
             date={"August 12, 2026"}
             time={"7:00 AM"}
             posted={"July 05, 2026"}
+            header1={"Dear [Team/Colleagues/Community], We are thrilled to announce that our Annual Awarding Ceremony is just around the corner! Join us as we celebrate excellence, hard work, and outstanding achievements within our organization."}
+            $date={"July 05, 2026"}
+            $time={"10AM - 5PM"}
+            $place={"Covered Court"}
+            bullet={"To secure your child's spot, please complete and sign the attached permission slip and return it to [Teacher's Name] no later than Deadline Date. Payment can be made at [Payment Location/Method, e.g., the School Office] ."}
+            />
+
+            <Announcement
+            Atitle={"FAMILY DAY"}
+            date={"August 12, 2026"}
+            time={"7:00 AM"}
+            posted={"July 06, 2026"}
             header1={"Dear [Team/Colleagues/Community], We are thrilled to announce that our Annual Awarding Ceremony is just around the corner! Join us as we celebrate excellence, hard work, and outstanding achievements within our organization."}
             $date={"July 05, 2026"}
             $time={"10AM - 5PM"}
