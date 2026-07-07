@@ -43,12 +43,12 @@ const ParentsHeader = () => {
 
         <span className="ml-auto flex items-center justify-end gap-x-5">
           <NavLink
-            to="/"
+            to="/parents"
             className={({ isActive }) =>
               `${isActive ? " text-swamp-green" : " "} `
             }
           >
-            HOME
+            DASHBOARD
           </NavLink>
           <NavLink
             to="admission"
@@ -58,14 +58,14 @@ const ParentsHeader = () => {
           >
             CONTACT US
           </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `${isActive ? " text-swamp-green" : " "} `
-            }
-          >
-            STUDENT RATING
-          </NavLink>
+            <NavLink
+              to="/parents/grades"
+              className={({ isActive }) => 
+                `${isActive ? " text-swamp-green" : " "} `
+              }
+            >
+              STUDENT RATING
+            </NavLink>
           <GreenButton onClick={() => navigate("/")}>
           <LogOut size={16} />
             Log Out

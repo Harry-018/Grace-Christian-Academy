@@ -18,4 +18,3 @@ export default function RatingStars({ rating }) {
   );
 }
 
-export default Stars;

@@ -17,6 +17,7 @@ import Form from "./Home/Form.jsx";
 import RootLayout from "./Layout/RootLayout.jsx";
 import ParentsDashboard from "./Home/ParentsDashboard.jsx";
 import ParentsLayout from "./Layout/ParentsLayout.jsx";
+import Grades from "./Home/Grades.jsx";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -31,6 +32,7 @@ const App = () => {
       </Route>, 
       <Route path="/parents" element={<ParentsLayout />}>
         <Route index element={<ParentsDashboard />} />
+        <Route path="grades" element={<Grades />} />
       </Route>,
       </>
       

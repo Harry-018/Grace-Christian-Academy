@@ -1,16 +1,14 @@
-import React from 'react'
+import React from "react";
 import { Star } from "lucide-react";
 
 function RatingCard({ title, overall, ratings }) {
   return (
-    <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-md">
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-[#3B4A2E]">
-          {title}
-        </h2>
+    <div className="w-full max-w-full rounded-2xl bg-white p-8 shadow-md mx-auto sm:mx-0">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-semibold text-[#3B4A2E]">{title}</h2>
 
-        <div className="flex items-center gap-2">
-          <div className="flex">
+        <div className="flex items-center p-2">
+          <div className="flex gap-1">
             {Array.from({ length: 5 }, (_, index) => (
               <Star
                 key={index}
@@ -23,30 +21,17 @@ function RatingCard({ title, overall, ratings }) {
               />
             ))}
           </div>
-
-          <span className="text-sm font-medium">
-            {overall.toFixed(1)}
-          </span>
+          <span className="text-sm font-medium ">{overall.toFixed(1)}</span>
         </div>
       </div>
 
-      {/* Ratings */}
-      <div className="space-y-4">
+      <div className="space-y-3 p-3">
         {ratings.map((item) => (
-          <div
-            key={item.name}
-            className="flex items-center justify-between"
-          >
-            <span className="text-gray-600">
-              {item.name}
-            </span>
+          <div key={item.name} className="flex items-center justify-between">
+            <span className="text-gray-600">{item.name}</span>
 
-            <div className="flex items-center gap-2">
-              <Star
-                size={15}
-                className="fill-yellow-400 text-yellow-400"
-              />
-
+            <div className="flex items-center gap-2 ">
+              <Star size={15} className="fill-yellow-400 text-yellow-400" />
               <span className="text-sm font-medium">
                 {item.score.toFixed(1)}
               </span>
