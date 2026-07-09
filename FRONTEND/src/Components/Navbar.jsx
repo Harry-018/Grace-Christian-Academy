@@ -58,7 +58,7 @@ const Navbar = () => {
           >
             ADMISSION
           </NavLink>
-          <GreenButton onClick={() => navigate("/tuition")} Label={"Login"} />
+          <GreenButton onClick={() => navigate("/parents")} Label={"Login"} />
         </span>
       </div>
       {sidebar && (

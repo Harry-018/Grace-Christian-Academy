@@ -51,7 +51,7 @@ const ParentsHeader = () => {
             DASHBOARD
           </NavLink>
           <NavLink
-            to="admission"
+            to="/parents/contact"
             className={({ isActive }) =>
               `${isActive ? " text-swamp-green" : " "} `
             }

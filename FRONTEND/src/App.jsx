@@ -18,6 +18,8 @@ import RootLayout from "./Layout/RootLayout.jsx";
 import ParentsDashboard from "./Home/ParentsDashboard.jsx";
 import ParentsLayout from "./Layout/ParentsLayout.jsx";
 import Grades from "./Home/Grades.jsx";
+import Contact from "./Home/Contact.jsx";
+
 
 const App = () => {
   const router = createBrowserRouter(
@@ -33,6 +35,7 @@ const App = () => {
       <Route path="/parents" element={<ParentsLayout />}>
         <Route index element={<ParentsDashboard />} />
         <Route path="grades" element={<Grades />} />
+        <Route path="contact" element={<Contact />} />
       </Route>,
       </>
       
