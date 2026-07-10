@@ -2,20 +2,20 @@ import React from "react";
 
 const AcademicProgramSelector = ({
   programData,
-  selectedProgram,
+  selectedProgramId,
   onSelectProgram,
 }) => {
   return (
     <div className="flex justify-between gap-y-3">
       <div className="no-scrollbar flex gap-x-5 overflow-x-auto">
-        {programData.map((program, index) => {
-          const isActive = selectedProgram === program.program;
+        {programData.map((program) => {
+          const isActive = selectedProgramId === program.id;
 
           return (
             <button
-              key={index}
-              onClick={() => onSelectProgram(program.program)}
-              className={`cursor-pointer text-xs md:text-sm ${
+              key={program.id}
+              onClick={() => onSelectProgram(program.id)}
+              className={`min-w-fit cursor-pointer text-xs md:text-sm ${
                 isActive ? "border-b text-swamp-green" : "text-ashlight"
               } pb-2`}
             >

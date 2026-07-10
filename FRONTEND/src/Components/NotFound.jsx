@@ -10,7 +10,7 @@ const NotFound = () => {
         <Frown className="scale-100 md:scale-125" /> Page Not Found
       </span>
       <span className="text-xs text-neutral-500 md:text-sm">
-        The page you entered does not exist
+        The page you entered is closed or does not exist
       </span>
 
       <Link to="/">

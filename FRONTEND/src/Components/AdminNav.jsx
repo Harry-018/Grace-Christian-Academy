@@ -10,12 +10,15 @@ import {
   GraduationCap,
   FileInput,
 } from "lucide-react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
+import AuthStore from "../Store/AuthStore";
 
 const SideNav = () => {
   const [sidebar, setSideBar] = useState(false);
   const [logout, setLogout] = useState(false);
-  const navigate = useNavigate();
+
+  const Logout = AuthStore((state) => state.logout);
 
   return (
     <div className="flex w-full lg:max-w-90">
@@ -126,7 +129,7 @@ const SideNav = () => {
       </div>
 
       {sidebar && (
-        <div className="fixed top-0 z-50 h-full w-full bg-neutral-500/50">
+        <div className="fixed top-0 z-50 h-full w-full bg-egg-dark/50">
           <span className="md: flex h-full max-w-[60%] flex-col justify-between gap-y-5 bg-bone p-5 xs:max-w-[40%]">
             <div className="flex flex-col gap-y-5">
               <X
@@ -221,11 +224,13 @@ const SideNav = () => {
               >
                 Cancel
               </button>
-              <Link to="/Login">
-                <button className="cursor-pointer rounded-lg bg-reject px-3 py-2 text-sm text-bone inset-shadow-small duration-300 hover:scale-105 active:scale-95">
-                  Logout
-                </button>
-              </Link>
+
+              <button
+                onClick={() => Logout()}
+                className="cursor-pointer rounded-lg bg-reject px-3 py-2 text-sm text-bone inset-shadow-small duration-300 hover:scale-105 active:scale-95"
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>

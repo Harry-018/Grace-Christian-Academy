@@ -1,5 +1,5 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useState } from "react";
+import { useLoaderData, Link } from "react-router-dom";
 
 import Card from "../Components/Card";
 import GreenButton from "../Components/GreenButton";
@@ -27,66 +27,68 @@ const HomePage = () => {
     <div className="flex h-full w-full flex-col gap-y-10 lg:gap-y-20">
       {/* Banner */}
       <div
-        className="flex w-full bg-cover bg-no-repeat text-bone md:justify-center lg:h-100"
+        className="flex w-full bg-cover bg-no-repeat text-bone md:justify-center lg:min-h-100"
         style={{
           backgroundImage:
             "linear-gradient( rgba(59,59,59,.75)), url('/assets/kinder.jpg')",
         }}
       >
-        {bannerData.map((banner, index) => (
-          <div
-            key={index}
-            className="flex flex-col gap-y-5 p-5 md:w-150 lg:w-250 lg:gap-y-10 lg:p-10"
-          >
-            <h2 className="text-sm lg:text-base">
-              Admission Now {banner.admission_status}
-            </h2>
+        {bannerData.map((banner) => (
+          <div className="flex flex-col gap-y-5 p-5 md:w-150 lg:w-250 lg:gap-y-10 lg:p-10">
+            <span className="w-fit">
+              <h2
+                className={`${banner.admission_status === "Open" ? "bg-swamp-green " : "bg-reject"} rounded-full px-4 py-2 font-[PoppinsBold] text-sm inset-shadow-med lg:text-base`}
+              >
+                Admission Now {banner.admission_status}
+              </h2>
+            </span>
             <h1 className="font-[PoppinsBold] text-xl lg:text-4xl">
               {banner.banner_title}
             </h1>
             <h3 className="text-xs lg:text-lg">{banner.banner_quote}</h3>
             <span className="flex items-center justify-between text-xs lg:text-lg">
               <h3>School Year {banner.school_year}</h3>
-              <GreenButton Label={"Enroll Now"} />
+              {banner.admission_status === "Open" && (
+                <Link to="enrollmentform">
+                  <GreenButton Label={"Enroll Now"} />
+                </Link>
+              )}
             </span>
           </div>
         ))}
       </div>
 
       {/* cards */}
-      <div className="flex flex-col md:items-center">
-        <div className="flex flex-col md:w-150 lg:w-full lg:items-center">
-          <span className="px-5 font-[PoppinsBold] text-swamp-green lg:text-2xl">
-            Academic Programs
-          </span>
-          <div className="flex overflow-hidden">
-            <div className="no-scrollbar flex snap-x snap-mandatory gap-x-5 overflow-x-auto px-5 py-5">
-              <Card
-                CardData={academicCardData}
-                Cimg={"/assets/pre-kinder.avif"}
-              />
-            </div>
+      <div className="flex flex-col items-center">
+        <div className="flex w-full max-w-full flex-col lg:gap-5">
+          <div className="flex w-full justify-center">
+            <h2 className="px-5 font-[PoppinsBold] text-swamp-green lg:text-2xl">
+              Academic Programs
+            </h2>
+          </div>
+
+          <div className="no-scrollbar flex snap-x snap-mandatory justify-center-safe gap-5 overflow-x-auto px-5 py-5">
+            {academicCardData.map((card) => (
+              <Card key={card.id} card={card} Cimg="/assets/pre-kinder.avif" />
+            ))}
           </div>
         </div>
       </div>
 
       {/* mission vision */}
-      <div className="flex flex-col gap-y-10 md:w-full md:items-center lg:flex-row lg:justify-center lg:gap-x-20 lg:px-5 lg:py-5">
-        {mission_visionData.map((missvis, index) => {
+      <div className="flex flex-col bg-swamp-green md:w-full md:items-center lg:flex-row lg:justify-center lg:gap-x-20 lg:px-5 lg:py-5">
+        {mission_visionData.map((missvis) => {
           return (
             // mission
             <>
-              <div
-                key={index}
-                className="flex flex-col gap-y-2 px-5 md:w-150 lg:px-0"
-              >
-                <h3 className="text-base text-swamp-green lg:text-xl">
+              <div className="flex flex-col gap-y-2 p-5 px-5 md:w-150 lg:min-h-75 lg:gap-5 lg:px-0">
+                <h3 className="text-base text-bone lg:text-xl">
                   {missvis.type}
                 </h3>
-                <h1 className="font-[PoppinsBold] text-lg text-egg-dark lg:text-2xl">
+                <h1 className="font-[PoppinsBold] text-lg text-egg lg:text-3xl">
                   {missvis.title}
                 </h1>
-                <span className="text-justify text-xs text-ashlight lg:text-lg">
+                <span className="text-justify text-xs text-bone/80 lg:text-lg">
                   {missvis.description}
                 </span>
               </div>
@@ -154,10 +156,10 @@ const HomePage = () => {
         </div>
       </div>
       {/* children activities */}
-      <div className="flex flex-col py-5 md:items-center">
+      <div className="bg-swamp-lite flex flex-col py-5 md:items-center">
         <div className="flex flex-col md:w-150 lg:w-full lg:items-center">
           <span className="px-5 font-[PoppinsBold] text-swamp-green lg:text-2xl">
-            Children Activties
+            Children Activities
           </span>
           <MiniCard childActData={childActivityData} />
         </div>
