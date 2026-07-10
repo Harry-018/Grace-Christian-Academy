@@ -50,6 +50,7 @@ const ParentsHeader = () => {
           >
             DASHBOARD
           </NavLink>
+
           <NavLink
             to="/parents/contact"
             className={({ isActive }) =>
@@ -58,6 +59,7 @@ const ParentsHeader = () => {
           >
             CONTACT US
           </NavLink>
+
             <NavLink
               to="/parents/grades"
               className={({ isActive }) => 
@@ -66,6 +68,16 @@ const ParentsHeader = () => {
             >
               STUDENT RATING
             </NavLink>
+
+            <NavLink
+              to="/parents"
+              className={({ isActive }) => 
+                `${isActive ? " text-swamp-green" : " "} `
+              }
+            >
+              SECURITY
+            </NavLink>
+
           <GreenButton onClick={() => navigate("/")}>
           <LogOut size={16} />
             Log Out

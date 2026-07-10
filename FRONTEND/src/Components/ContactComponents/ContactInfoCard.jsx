@@ -36,9 +36,9 @@ const contactItems = [
 const ContactInfoCard = () => {
   return (
     <>
-    <div className="text-swamp-green rounded-md text-center mb-6 font-[Poppins] cursor-default">  
-        <h2 className="text-5xl font-[PoppinsBold]">
-          Get in Touch! 
+    <div className="text-swamp-green rounded-md text-center px-4 sm:px-6 font-[Poppins] cursor-default">  
+        <h2 className="text-3xl sm:text-4xl md:text-5xl py-5 font-[PoppinsBold]">
+          Other Information :
         </h2>
       </div>
 
@@ -57,14 +57,14 @@ const ContactInfoCard = () => {
                 className="text-cgaGreen mb-4"
               />
 
-              <h3 className="text-lg font-bold text-gray-800 px-3 py-3 font-[PoppinsBold]">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 px-3 py-3 font-[PoppinsBold]">
                 {item.title}
               </h3>
 
               {item.details.map((detail, i) => (
                 <p
                   key={i}
-                  className="text-gray-600 text-2xs font-[PoppinsBold]"
+                  className="text-gray-600 text-xs sm:text-sm font-[PoppinsBold]"
                 >
                   {detail}
                 </p>
