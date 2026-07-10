@@ -16,7 +16,14 @@ const Navbar = () => {
           }}
         />
         <span className="flex items-center gap-x-2">
-          <img src="/assets/logowbg.png" alt="" className="h-8 rounded-full" />
+          <Link to="/">
+            <img
+              src="/assets/logowbg.png"
+              alt=""
+              className="h-8 rounded-full"
+            />
+          </Link>
+
           <Link to="/">
             <span>Grace Christian Academy</span>
           </Link>
@@ -26,11 +33,14 @@ const Navbar = () => {
       </div>
       <div className="relative z-50 hidden h-20 w-full items-center justify-between bg-bone p-5 px-10 text-xs inset-shadow-med lg:flex">
         <span className="flex items-center gap-x-5">
-          <img
-            src="/assets/logowbg.png"
-            alt=""
-            className="h-8 rounded-full lg:h-12"
-          />
+          <Link to="/">
+            <img
+              src="/assets/logowbg.png"
+              alt=""
+              className="h-8 rounded-full lg:h-12"
+            />
+          </Link>
+
           <Link to="/">
             <h1 className="text-sm tracking-[0.30em] text-ashlight">
               Grace Christian Academy Cavite Inc. <br />

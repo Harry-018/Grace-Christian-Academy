@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 const WebManagementLayout = () => {
   return (
-    <div className="flex flex-col gap-y-5">
+    <div className="flex flex-col gap-y-5 font-[Poppins]">
       <div className="w-full rounded-2xl lg:rounded-2xl lg:bg-bone lg:p-5 lg:inset-shadow-med">
         Website Management
       </div>

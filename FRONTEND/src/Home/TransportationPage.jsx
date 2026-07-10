@@ -2,7 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 
 const TransportationPage = () => {
-  const transpoData = useLoaderData();
+  const { transpoData } = useLoaderData();
 
   return (
     <div className="flex flex-col lg:py-5">
@@ -27,7 +27,7 @@ const TransportationPage = () => {
         <div className="no-scrollbar flex flex-col gap-5 overflow-y-auto px-5 py-3 md:grid md:grid-cols-2 md:overflow-visible lg:grid-cols-3">
           {transpoData.map((transpo) => (
             <div
-              key={transpo.location}
+              key={transpo.transpo_id}
               className="flex items-center justify-between gap-x-3 rounded-2xl bg-bone p-5 inset-shadow-med lg:p-8"
             >
               <div className="flex flex-col">

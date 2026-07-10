@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import React from "react";
 
+import ProtectedRoutes from "./ProtectedRoutes.jsx";
+
 // import home pages
 import Login from "./Login.jsx";
 import HomePage from "./Home/HomePage.jsx";
@@ -15,6 +17,7 @@ import TransportationPage from "./Home/TransportationPage.jsx";
 import AdmissionPage from "./Home/AdmissionPage.jsx";
 import TuitionPage from "./Home/TuitionPage.jsx";
 import NotFound from "./Components/NotFound.jsx";
+import NotAuthorized from "./NotAuthorized.jsx";
 
 //import admin pages
 import Dashboard from "./Admin/DashboardPage.jsx";
@@ -68,7 +71,14 @@ const App = () => {
           </Route>
         </Route>
         ,{/* admin pages */}
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoutes allowedRole="admin">
+              <AdminLayout />
+            </ProtectedRoutes>
+          }
+        >
           <Route index element={<Dashboard />} />
           <Route path="application" element={<ApplicationLayout />}>
             <Route index element={<ApplicationsPage />} />
@@ -87,14 +97,23 @@ const App = () => {
           </Route>
           <Route path="webmanagement" element={<WebManagementLayout />}>
             <Route index element={<Home />} loader={homeLoader}></Route>
-            <Route path="tuition" element={<Tuitions />} />
-            <Route path="transport" element={<Transport />} />
+            <Route
+              path="tuition"
+              element={<Tuitions />}
+              loader={tuitionLoader}
+            ></Route>
+            <Route
+              path="transport"
+              element={<Transport />}
+              loader={transpoLoader}
+            ></Route>
             <Route path="admission" element={<Admission />} />
           </Route>
         </Route>
         ,
         <Route path="/Login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/NotAuth" element={<NotAuthorized />} />
       </>,
     ),
   );

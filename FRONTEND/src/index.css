@@ -12,13 +12,13 @@ body {
 
 @font-face {
   font-family: "Poppins";
-  src: url("../fonts/poppins.regular.ttf") format("truetype");
+  src: url("/fonts/poppins.regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "PoppinsBold";
-  src: url("../fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
