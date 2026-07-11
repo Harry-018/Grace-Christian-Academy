@@ -70,7 +70,7 @@ const ParentsHeader = () => {
             </NavLink>
 
             <NavLink
-              to="/parents"
+              to="/parents/security"
               className={({ isActive }) => 
                 `${isActive ? " text-swamp-green" : " "} `
               }

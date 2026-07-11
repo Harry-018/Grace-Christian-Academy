@@ -19,6 +19,7 @@ import ParentsDashboard from "./Home/ParentsDashboard.jsx";
 import ParentsLayout from "./Layout/ParentsLayout.jsx";
 import Grades from "./Home/Grades.jsx";
 import Contact from "./Home/Contact.jsx";
+import Security from "./Home/Security.jsx";
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Route index element={<ParentsDashboard />} />
         <Route path="grades" element={<Grades />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="security" element={<Security />} />
       </Route>,
       </>
       
