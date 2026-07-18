@@ -6,19 +6,19 @@ const ParentsDashboard = () => {
   return (
     <div className="flex flex-col gap-6 p-4 sm:p-6 font-[Poppins] cursor-default">
       <div className="flex justify-center">
-        <div className="flex flex-col gap-4 border border-swamp-green rounded-lg bg-bone p-4 sm:p-6 w-full max-w-4xl">
+        <div className="flex flex-col gap-4 border border-swamp-green rounded-lg bg-green-900 p-4 sm:p-6 w-full max-w-4xl">
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-center sm:text-left">
-            <img
+            {/* <img
               src="/assets/logo.png"
               alt="logo"
-              className="w-16 sm:w-20 rounded-full object-cover shrink-0"
-            />
-            <span className="text-3xl sm:text-2xl md:text-4xl font-[PoppinsBold] text-swamp-green hover:text-2xl duration-300">
+              className="w-16 h-20 object-contain drop-shadow-md sm:w-20 rounded-full shrink-0"
+            /> */}
+            <span className="text-3xl p-3 sm:text-2xl md:text-4xl font-[PoppinsBold] text-white">
               Bautista, Sofia Anne
             </span>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-5 p-4 sm:p-6 border border-swamp-green rounded-lg bg-bone">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-5 p-4 sm:p-6 border border-swamp-green rounded-lg">
             <StudentInfo Htittle="LRN" Otittle="2026147528128" />
             <StudentInfo Htittle="Class Schedule" Otittle="Monday - Friday" />
             <StudentInfo Htittle="Class Time" Otittle="7am - 10am" />
