@@ -28,16 +28,16 @@ const Security = () => {
   return (
     <div className="min-h-screen bg-white px-4 py-6 font-[Poppins] sm:px-6 lg:px-8 cursor-default">
       <div className="mx-auto flex max-w-6xl flex-col gap-6">
-        <div className="rounded-xl border border-swamp-green bg-linear-to-br from-white p-6 shadow-xl sm:p-8">
+        <div className="rounded-xl border border-swamp-green bg-green-900 p-6 shadow-xl sm:p-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-swamp-green">
+              {/* <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white">
                 Account Management
-              </p>
-              <h2 className="mt-2 text-2xl font-[PoppinsBold] text-green-950 sm:text-3xl">
+              </p> */}
+              <h2 className="py-2 text-2xl font-[PoppinsBold] text-white sm:text-3xl">
                 Account Settings
               </h2>
-              <p className="py-3 max-w-2xl text-sm text-black sm:text-base">
+              <p className="py-3 max-w-2xl text-sm text-white sm:text-base">
                 Keep your guardian information, login details, and enrolled student records up to date.
               </p>
             </div>

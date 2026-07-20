@@ -2,7 +2,7 @@ import React from "react";
 
 const StudentCard = ({ student }) => {
   return (
-    <div className="w-full rounded-3xl border border-swamp-green bg-white p-6 font-[Poppins] shadow-xl transition hover:-translate-y-1 hover:shadow-lg cursor-default">
+    <div className="w-full rounded-3xl border border-swamp-green bg-white p-6 font-[Poppins] shadow-xl cursor-default">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
