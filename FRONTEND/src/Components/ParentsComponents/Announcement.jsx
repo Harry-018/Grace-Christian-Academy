@@ -1,31 +1,32 @@
 import React from 'react'
 
-const Announcement = ({Atitle, posted, time, date, header1, bullet, $date, $time, $place}) => {
-  return ( 
-    <div className="flex min-w-50 w-full sm:w-[320px] max-w-sm shrink-0 snap-center lg:w-auto lg:max-w-none lg:shrink lg:snap-none font-[Poppins] cursor-default">
-      <div className="flex h-full flex-col gap-3 sm:gap-4 rounded-lg bg-bone p-4 sm:p-5 shadow-xl">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
-          <span className="text-base sm:text-lg font-[PoppinsBold] text-black">{Atitle}</span>
-          <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-ashlight">
-            <span>{date}</span>
-            <span className="h-4 sm:h-5 w-px bg-swamp-green" />
-            <span>{time}</span>
+const Announcement = ({ Atitle, eventDate, eventTime, posted, message, $date, $time, $place, note }) => {
+  return (
+    <div className="w-full font-[Poppins] cursor-default">
+      <div className="flex flex-col gap-3 rounded-2xl bg-bone p-4 shadow-md sm:gap-4 sm:p-5 md:p-6">
+        {/* Header row */}
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+          <h2 className="text-sm font-[PoppinsBold] font-bold text-black sm:text-base md:text-lg">{Atitle}</h2>
+          <div className="flex shrink-0 items-center gap-2 text-[11px] sm:text-xs md:text-sm text-ashlight whitespace-nowrap">
+            <span>{eventDate}</span>
+            <span className="h-4 w-px bg-swamp-green" />
+            <span>{eventTime}</span>
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 sm:gap-4">
-          <span className="text-xs sm:text-sm text-ashlight">Posted on: {posted}</span>
-          <span className="flex border-t-2 border-swamp-green"></span>
-          <span className="text-sm sm:text-base text-ashlight">{header1}</span>
-
-          <span className="text-sm sm:text-base text-ashlight">Date : {$date}</span>
-          <span className="text-sm sm:text-base text-ashlight">Time : {$time}</span>
-          <span className="text-sm sm:text-base text-ashlight">Place : {$place}</span>
-          <p className="text-sm sm:text-base text-ashlight">* {bullet}</p>
+        <span className="text-[11px] sm:text-xs md:text-sm text-ashlight">Posted on: {posted}</span>
+        <span className="border-t-2 border-swamp-green" />
+        <p className="text-xs sm:text-sm md:text-base leading-relaxed text-ashlight">{message}</p>
+        <div className="flex flex-col gap-2 sm:gap-3">
+          <span className="text-xs sm:text-sm md:text-base text-ashlight">Date : {$date}</span>
+          <span className="text-xs sm:text-sm md:text-base text-ashlight">Time : {$time}</span>
+          <span className="text-xs sm:text-sm md:text-base text-ashlight">Place : {$place}</span>
         </div>
+
+        <p className="text-xs sm:text-sm md:text-base leading-relaxed text-ashlight">* {note}</p>
       </div>
     </div>
   )
 }
 
-export default Announcement;
+export default Announcement
