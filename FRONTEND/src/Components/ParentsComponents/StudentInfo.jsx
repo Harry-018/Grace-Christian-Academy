@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const StudentInfoCard = ({
-  studentName = "Santiago, Margarett",
-  selectedName = "Margarette",
+  selectedName = "Villa, Margarette",
   lrn = "not applicable",
   schoolYear = "2025-2026",
   classSchedule = "Monday - Thursday",
@@ -24,59 +23,60 @@ const StudentInfoCard = ({
   ];
 
   return (
-    <div className="w-full font-[Poppins]">
-      {/* Student selector dropdown */}
-      <div className="w-full py-2">
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-xl px-4 py-1.5 text-xs font-[PoppinsBold] bg-swamp-green text-white shadow-sm transition hover:brightness-95 sm:px-5 sm:py-2 sm:text-sm"
-        >
-          {selectedName}
-          <ChevronDown
-            size={16}
-            className={`transition-transform ${open ? "rotate-180" : ""}`}
-          />
-        </button>
-      </div>
-
-      {/* Info card */}
+    <div className="mx-auto max-w-7xl w-full font-[Poppins] px-4 sm:px-6 md:px-12 overflow-hidden">
+      {/* Card */}
       <div className="w-full rounded-2xl bg-bone px-4 py-4 shadow-sm sm:px-6 sm:py-5 md:px-8 md:py-6">
-        {/* Top row */}
-        <div className="flex flex-col gap-2 border-b border-black/5 pb-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:pb-4">
-          <h2 className="text-sm font-bold text-swamp-green font-[PoppinsBold] sm:text-lg md:text-xl lg:text-2xl">
-            {studentName}
-          </h2>
+        {/* Top Section */}
+        <div className="flex flex-col gap-4 border-b border-black/10 pb-4 sm:pb-5 lg:flex-row lg:items-center lg:justify-between">
+          {/* Student Name */}
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="inline-flex w-fit rounded-xl bg-swamp-green gap-2 items-center px-4 py-2.5 text-sm font-[PoppinsBold] text-white shadow-sm transition hover:brightness-95 sm:py-2 sm:gap-3 sm:text-md"
+          >
+            {selectedName}
+            <ChevronDown
+              size={18}
+              className={`transition-transform ${open ? "rotate-180" : ""}`}
+            />
+          </button>
 
-          <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-4 sm:text-sm">
-            <span className="text-gray-700">
-              <span className="font-semibold text-swamp-green">LRN : </span>
-              <span className="text-gray-400">{lrn}</span>
-            </span>
-            <span className="text-gray-700">
-              <span className="font-semibold text-swamp-green">School Year : </span>
-              {schoolYear}
-            </span>
+          {/* Right Side */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 lg:gap-6">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="text-[11px] sm:text-sm">
+                <span className="font-[PoppinsBold] text-swamp-green">
+                  LRN :
+                </span>{" "}
+                <span className="text-gray-400">{lrn}</span>
+              </span>
+
+              <span className="text-[11px] sm:text-sm">
+                <span className="font-[PoppinsBold] text-swamp-green">
+                  School Year :
+                </span>{" "}
+                {schoolYear}
+              </span>
+            </div>
+
             <button
               type="button"
               onClick={onSeeGrades}
-              className="rounded-xl px-3 py-1 text-xs font-[PoppinsBold] text-white bg-swamp-green shadow-sm transition hover:brightness-95 sm:px-4 sm:py-1.5 sm:text-sm"
+              className="rounded-xl bg-swamp-green w-fit px-5 py-2.5 text-sm font-[PoppinsBold] text-white shadow-sm transition hover:brightness-95 sm:py-2"
             >
               See Grades
             </button>
           </div>
         </div>
 
-        {/* Detail columns */}
-        <div className="grid grid-cols-2 gap-x-3 gap-y-4 pt-4 sm:grid-cols-3 sm:gap-y-5 md:grid-cols-5">
-          {details.map((d) => (
-            <div key={d.label} className="flex flex-col gap-0.5 sm:gap-1">
-              <span className="text-[11px] font-[PoppinsBold] text-swamp-green sm:text-xs md:text-sm">
-                {d.label}
-              </span>
-              <span className="text-[11px] text-gray-700 sm:text-xs md:text-sm">
-                {d.value}
-              </span>
+        {/* Details */}
+        <div className="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-3 sm:gap-5 sm:pt-5 lg:grid-cols-5">
+          {details.map((detail) => (
+            <div key={detail.label}>
+              <p className="text-[11px] sm:text-sm font-[Poppins] text-swamp-green">
+                {detail.label}
+              </p>
+              <p className="mt-1 text-[11px] sm:text-sm text-gray-700">{detail.value}</p>
             </div>
           ))}
         </div>

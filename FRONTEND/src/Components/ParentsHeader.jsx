@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { MenuIcon, X, LogOut } from "lucide-react";
+import { MenuIcon, X, LogOut, User, ChevronDown, Settings, Home, Bus, CreditCard, ClipboardList, LayoutDashboard } from "lucide-react";
 import GreenButton from "./GreenButton";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 
 const ParentsHeader = () => {
   const [sidebar, setSideBar] = useState(false);
+  const [userMenu, setUserMenu] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -24,6 +25,7 @@ const ParentsHeader = () => {
 
         <GreenButton onClick={() => navigate("/tuition")} Label={"Login"} />
       </div>
+
       <div className="relative z-50 hidden h-20 w-full items-center justify-between bg-bone p-5 px-10 text-xs inset-shadow-med lg:flex">
         <span className="flex items-center gap-x-5">
           <img
@@ -41,38 +43,59 @@ const ParentsHeader = () => {
           </Link>
         </span>
 
-        <span className="ml-auto flex items-center justify-end gap-x-5">
+        <span className="px-auto flex items-center gap-x-8">
           <NavLink
-            to="/"
+            to="/parents"
             className={({ isActive }) =>
-              `${isActive ? " text-swamp-green" : " "} `
+              `${isActive ? "text-swamp-green" : "text-ashlight"} flex items-center gap-x-2 font-[PoppinsBold] tracking-wide`
             }
           >
-            HOME
+            <LayoutDashboard size={18} />
+            DASHBOARD
           </NavLink>
-          <NavLink
-            to="admission"
-            className={({ isActive }) =>
-              `${isActive ? " text-swamp-green" : " "} `
-            }
-          >
-            CONTACT US
-          </NavLink>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `${isActive ? " text-swamp-green" : " "} `
-            }
-          >
-            STUDENT RATING
-          </NavLink>
-          <GreenButton onClick={() => navigate("/")}>
-          <LogOut size={16} />
-            Log Out
-          </GreenButton>
+
+          {/* User dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setUserMenu(!userMenu)}
+              className="flex items-center gap-x-2 text-ashlight"
+            >
+              <User size={18} />
+              <span className="font-[PoppinsBold]">Rosamanta</span>
+              <ChevronDown
+                size={14}
+                className={`transition-transform ${userMenu ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {userMenu && (
+              <div className="absolute right-0 top-full mt-2 w-48 rounded-xl bg-bone p-2 shadow-lg">
+                <button
+                  onClick={() => {
+                    setUserMenu(false);
+                    navigate("/account-settings");
+                  }}
+                  className="flex w-full items-center gap-x-3 rounded-lg px-3 py-2 text-left text-ashlight hover:bg-egg-dark/10"
+                >
+                  <Settings size={16} />
+                  Account Settings
+                </button>
+                <button
+                  onClick={() => {
+                    setUserMenu(false);
+                    navigate("/");
+                  }}
+                  className="flex w-full items-center gap-x-3 rounded-lg px-3 py-2 text-left text-red-500 hover:bg-red-50"
+                >
+                  <LogOut size={16} />
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
         </span>
-        
       </div>
+
       {sidebar && (
         <div className="fixed top-0 z-50 h-full w-full bg-neutral-500/50">
           <span className="flex h-full w-[60%] flex-col gap-y-5 bg-bone p-5 md:w-[30%]">
@@ -81,37 +104,41 @@ const ParentsHeader = () => {
                 setSideBar(!sidebar);
               }}
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-y-2">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `${isActive ? " bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center rounded-xl font-[PoppinsBold] text-xs`
+                  `${isActive ? " bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center gap-x-2 rounded-xl font-[PoppinsBold] text-xs`
                 }
               >
+                <Home size={16} />
                 <span>Home</span>
               </NavLink>
               <NavLink
                 to="transport"
                 className={({ isActive }) =>
-                  `${isActive ? " bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center rounded-xl font-[PoppinsBold] text-xs`
+                  `${isActive ? " bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center gap-x-2 rounded-xl font-[PoppinsBold] text-xs`
                 }
               >
+                <Bus size={16} />
                 <span>Transportation</span>
               </NavLink>
               <NavLink
                 to="tuition"
                 className={({ isActive }) =>
-                  `${isActive ? "bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center rounded-xl font-[PoppinsBold] text-xs`
+                  `${isActive ? "bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center gap-x-2 rounded-xl font-[PoppinsBold] text-xs`
                 }
               >
+                <CreditCard size={16} />
                 <span>Tuitions</span>
               </NavLink>
               <NavLink
                 to="admission"
                 className={({ isActive }) =>
-                  `${isActive ? "bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center rounded-xl font-[PoppinsBold] text-xs`
+                  `${isActive ? "bg-swamp-green text-bone" : " text-swamp-green"} flex h-10 items-center justify-center gap-x-2 rounded-xl font-[PoppinsBold] text-xs`
                 }
               >
+                <ClipboardList size={16} />
                 <span>Admission</span>
               </NavLink>
             </div>

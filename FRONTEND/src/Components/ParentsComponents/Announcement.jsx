@@ -1,29 +1,28 @@
 import React from 'react'
 
-const Announcement = ({ Atitle, eventDate, eventTime, posted, message, $date, $time, $place, note }) => {
+const Announcement = ({ title, posted, message, date, time, venue }) => {
   return (
-    <div className="w-full font-[Poppins] cursor-default">
-      <div className="flex flex-col gap-3 rounded-2xl bg-bone p-4 shadow-md sm:gap-4 sm:p-5 md:p-6">
+    <div className="w-full h-flex font-[Poppins] cursor-default">
+      <div className="flex flex-col gap-3 rounded-2xl bg-bone p-4 shadow-sm sm:gap-4 sm:p-5 md:p-6">
         {/* Header row */}
-        <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-          <h2 className="text-sm font-[PoppinsBold] font-bold text-black sm:text-base md:text-lg">{Atitle}</h2>
-          <div className="flex shrink-0 items-center gap-2 text-[11px] sm:text-xs md:text-sm text-ashlight whitespace-nowrap">
-            <span>{eventDate}</span>
-            <span className="h-4 w-px bg-swamp-green" />
-            <span>{eventTime}</span>
-          </div>
+        <div className="flex flex-col gap-1 lg:flex-row lg:items-start lg:justify-between lg:gap-4">
+          <h2 className="text-sm font-[PoppinsBold] text-swamp-green sm:text-base md:text-lg">
+            {title}
+          </h2>
+          <span className="shrink-0 whitespace-nowrap text-[11px] text-ashlight sm:text-xs md:text-sm">
+            Posted on: {posted}
+          </span>
         </div>
 
-        <span className="text-[11px] sm:text-xs md:text-sm text-ashlight">Posted on: {posted}</span>
-        <span className="border-t-2 border-swamp-green" />
-        <p className="text-xs sm:text-sm md:text-base leading-relaxed text-ashlight">{message}</p>
-        <div className="flex flex-col gap-2 sm:gap-3">
-          <span className="text-xs sm:text-sm md:text-base text-ashlight">Date : {$date}</span>
-          <span className="text-xs sm:text-sm md:text-base text-ashlight">Time : {$time}</span>
-          <span className="text-xs sm:text-sm md:text-base text-ashlight">Place : {$place}</span>
-        </div>
+        <p className="border-t pt-3 text-xs leading-relaxed text-ashlight sm:text-sm md:text-base">
+          {message}
+        </p>
 
-        <p className="text-xs sm:text-sm md:text-base leading-relaxed text-ashlight">* {note}</p>
+        <ul className="list-disc space-y-2 pl-5 text-xs text-ashlight sm:text-sm md:text-base">
+          <li>Date: {date}</li>
+          <li>Time: {time}</li>
+          <li>Venue: {venue}</li>
+        </ul>
       </div>
     </div>
   )
