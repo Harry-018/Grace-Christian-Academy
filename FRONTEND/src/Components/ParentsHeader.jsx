@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { MenuIcon, X, LogOut } from "lucide-react";
+import { MenuIcon, X, LogOut, User, ChevronDown, Settings, LayoutDashboard } from "lucide-react";
 import GreenButton from "./GreenButton";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 
 const ParentsHeader = () => {
   const [sidebar, setSideBar] = useState(false);
+  const [userMenu, setUserMenu] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -24,6 +25,7 @@ const ParentsHeader = () => {
 
         <GreenButton onClick={() => navigate("/tuition")} Label={"Login"} />
       </div>
+
       <div className="relative z-50 hidden h-20 w-full items-center justify-between bg-bone p-5 px-10 text-xs inset-shadow-med lg:flex">
         <span className="flex items-center gap-x-5">
           <img
@@ -41,50 +43,59 @@ const ParentsHeader = () => {
           </Link>
         </span>
 
-        <span className="ml-auto flex items-center justify-end gap-x-5">
+        <span className="ml-auto flex items-center gap-x-8">
           <NavLink
             to="/parents"
             className={({ isActive }) =>
-              `${isActive ? " text-swamp-green" : " "} `
+              `${isActive ? "text-swamp-green" : "text-ashlight"} flex items-center gap-x-2 font-[PoppinsBold] tracking-wide`
             }
           >
+            <LayoutDashboard size={18} />
             DASHBOARD
           </NavLink>
 
-          <NavLink
-            to="/parents/contact"
-            className={({ isActive }) =>
-              `${isActive ? " text-swamp-green" : " "} `
-            }
-          >
-            CONTACT US
-          </NavLink>
-
-            <NavLink
-              to="/parents/grades"
-              className={({ isActive }) => 
-                `${isActive ? " text-swamp-green" : " "} `
-              }
+          {/* User dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setUserMenu(!userMenu)}
+              className="flex items-center gap-x-2 text-ashlight"
             >
-              STUDENT RATING
-            </NavLink>
+              <User size={18} />
+              <span className="font-[PoppinsBold]">Rosamanta</span>
+              <ChevronDown
+                size={14}
+                className={`transition-transform ${userMenu ? "rotate-180" : ""}`}
+              />
+            </button>
 
-            <NavLink
-              to="/parents/security"
-              className={({ isActive }) => 
-                `${isActive ? " text-swamp-green" : " "} `
-              }
-            >
-              SECURITY
-            </NavLink>
-
-          <GreenButton onClick={() => navigate("/")}>
-          <LogOut size={16} />
-            Log Out
-          </GreenButton>
+            {userMenu && (
+              <div className="absolute right-0 top-full mt-2 w-48 rounded-xl bg-bone p-2 shadow-lg">
+                <button
+                  onClick={() => {
+                    setUserMenu(false);
+                    navigate("/parents/security");
+                  }}
+                  className="flex w-full items-center gap-x-3 rounded-lg px-3 py-2 text-left text-ashlight hover:bg-egg-dark/10"
+                >
+                  <Settings size={16} />
+                  Account Settings
+                </button>
+                <button
+                  onClick={() => {
+                    setUserMenu(false);
+                    navigate("/");
+                  }}
+                  className="flex w-full items-center gap-x-3 rounded-lg px-3 py-2 text-left text-red-500 hover:bg-red-50"
+                >
+                  <LogOut size={16} />
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
         </span>
-        
       </div>
+
       {sidebar && (
         <div className="fixed top-0 z-50 h-full w-full bg-neutral-500/50">
           <span className="flex h-full w-[60%] flex-col gap-y-5 bg-bone p-5 md:w-[30%]">

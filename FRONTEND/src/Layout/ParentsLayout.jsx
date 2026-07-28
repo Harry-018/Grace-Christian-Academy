@@ -1,19 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import ParentsHeader from "../Components/ParentsHeader";
-import Footer from "../Components/Footer";
 import Copyright from "../Components/Copyright";
 
 const ParentsLayout = () => {
   return (
-    <div className="flex flex-col justify-between">
-        <ParentsHeader />
-
-      <div className="h-full justify-center bg-egg font-[Poppins] text-egg-dark">
+    <div className="flex min-h-screen flex-col">
+      <ParentsHeader />
+      <main className="flex-1 bg-egg font-[Poppins] text-egg-dark">
         <Outlet />
-      </div>
-
-      <Footer />
+      </main>
       <Copyright />
     </div>
   );

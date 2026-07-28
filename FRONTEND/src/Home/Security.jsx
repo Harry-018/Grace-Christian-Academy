@@ -1,12 +1,15 @@
-import React from "react";
-import GuardianCards from "../Components/SecurityComponents/GuardianCards";
+import React, { useState } from "react";
+import { ShieldCheck } from "lucide-react";
+
 import StudentCard from "../Components/SecurityComponents/StudentCard";
+import GuardianCard from "../Components/SecurityComponents/GuardianCards";
+import ChangePasswordModal from "../Components/SecurityComponents/ChangePasswordModal";
+import AccountCard from "../Components/SecurityComponents/AccountCard";
 
 const guardian = {
   lastName: "ROMASANTA",
   firstName: "ROSALINE",
   middleName: "MADRIGAL",
-  gender: "FEMALE",
   contactNo: "09123456789",
 };
 
@@ -14,72 +17,93 @@ const account = {
   email: "romasanta@gmail.com",
 };
 
-const students = [
-  {
-    id: 1,
-    fullName: "SANTIAGO, MARGARET C.",
-    lrn: "12345678910",
-    gradeLevel: "Nursery",
-    tuition: "Full Cash",
-  },
-];
+const student = {
+  fullName: "Santiago, Margarett",
+  lrn: null,
+  sy: "2025 - 2026",
+  classSchedule: "Monday - Thursday",
+  gradeLevel: "Nursery",
+  room: "Mahogany - 3",
+  classTime: "7:00 AM - 11:00 AM",
+  adviser: "Ms. Rosary Mendez",
+};
 
 const Security = () => {
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+
+  const handlePasswordUpdate = (passwords) => {
+    console.log("Password update submitted:", passwords);
+    setShowPasswordModal(false);
+  };
+
   return (
-    <div className="min-h-screen bg-white px-4 py-6 font-[Poppins] sm:px-6 lg:px-8 cursor-default">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6">
-        <div className="rounded-xl border border-swamp-green bg-green-900 p-6 shadow-xl sm:p-8">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              {/* <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white">
-                Account Management
-              </p> */}
-              <h2 className="py-2 text-2xl font-[PoppinsBold] text-white sm:text-3xl">
-                Account Settings
-              </h2>
-              <p className="py-3 max-w-2xl text-sm text-white sm:text-base">
-                Keep your guardian information, login details, and enrolled student records up to date.
-              </p>
+    <div className="min-h-screen bg-bone px-5 py-6 font-[Poppins]">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
+        {/* Header */}
+        <div className="flex items-center justify-between rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+          <div className="flex items-center gap-4">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-swamp-green text-white shadow-md">
+              <ShieldCheck size={34} />
             </div>
-            <div className="inline-flex w-fit items-center justify-center rounded-lg border border-swamp-green/40 bg-white px-4 py-2 text-sm font-[PoppinsBold] text-forest-green shadow-sm sm:self-start md:text-sm md:text-center">
-              Secure & Updated
+
+            <div className="flex flex-col gap-1">
+              <h1 className="text-3xl font-[PoppinsBold] text-swamp-green ">
+                Security Settings
+              </h1>
+
+              <p className="text-sm text-gray-500">
+                Manage your account and enrolled student information.
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-          <div className="w-full lg:w-[48%]">
-            <GuardianCards 
-            guardian={guardian}
-            account={account} 
+        {/* Student */}
+        <div className="flex flex-col gap-4 rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+          <div className="flex items-center gap-3">
+
+            <h2 className="text-xl font-[PoppinsBold] text-gray-500">
+              Student Information
+            </h2>
+          </div>
+          <StudentCard student={student} />
+        </div>
+
+        {/* Guardian + Account */}
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="flex flex-col gap-4 rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+
+              <h2 className="text-xl font-[PoppinsBold] text-gray-500">
+                Guardian Information
+              </h2>
+            </div>
+            <GuardianCard guardian={guardian} />
+          </div>
+
+          <div className="flex flex-col gap-4 rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+
+              <h2 className="text-xl font-[PoppinsBold] text-gray-500">
+                Account Details
+              </h2>
+            </div>
+
+            <AccountCard
+              account={account}
+              onChangePassword={() => setShowPasswordModal(true)}
             />
           </div>
 
-          <div className="w-full space-y-4 lg:w-[48%]">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-lg font-[PoppinsBold] uppercase text-swamp-green">
-                  Enrolled Students
-                </h3>
-                <p className="text-sm text-[#6a7568]">
-                  Your child’s current school records are listed below.
-                </p>
-              </div>
-              <div className="rounded-lg bg-swamp-green px-3 py-1 text-sm font-[PoppinsBold] text-white">
-                {students.length} Student
-              </div>
-            </div>
-
-            {students.map((student) => (
-              <StudentCard
-              key={student.id}
-              student={student}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      {showPasswordModal && (
+        <ChangePasswordModal
+          onClose={() => setShowPasswordModal(false)}
+          onSubmit={handlePasswordUpdate}
+        />
+      )}
     </div>
+    </div>
+  </div>
   );
 };
 
