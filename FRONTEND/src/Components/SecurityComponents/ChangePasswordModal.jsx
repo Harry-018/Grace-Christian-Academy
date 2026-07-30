@@ -7,39 +7,9 @@ import {
   X,
 } from "lucide-react";
 
-const PASSWORD_FIELDS = [
-  {
-    key: "current",
-    label: "Current Password",
-    placeholder: "Enter current password",
-  },
-  {
-    key: "new",
-    label: "New Password",
-    placeholder: "Minimum 10 characters",
-  },
-  {
-    key: "confirm",
-    label: "Confirm Password",
-    placeholder: "Re-enter new password",
-  },
-];
-
-const INITIAL_PASSWORDS = {
-  current: "",
-  new: "",
-  confirm: "",
-};
-
-const INITIAL_VISIBILITY = {
-  current: false,
-  new: false,
-  confirm: false,
-};
-
-const ChangePasswordModal = ({ onClose, onSubmit }) => {
-  const [passwords, setPasswords] = useState(INITIAL_PASSWORDS);
-  const [visibility, setVisibility] = useState(INITIAL_VISIBILITY);
+const ChangePasswordModal = ({ passwordFields, initialPasswords, initialVisibility, onClose, onSubmit }) => {
+  const [passwords, setPasswords] = useState(initialPasswords);
+  const [visibility, setVisibility] = useState(initialVisibility);
 
   const updatePassword = (key, value) => {
     setPasswords((prev) => ({
@@ -91,7 +61,7 @@ const ChangePasswordModal = ({ onClose, onSubmit }) => {
 
         {/* Password Fields */}
         <div className="flex flex-col gap-3 md:gap-5">
-          {PASSWORD_FIELDS.map(({ key, label, placeholder }) => (
+          {passwordFields.map(({ key, label, placeholder }) => (
             <div key={key} className="flex flex-col gap-1.5 md:gap-2">
               <label className="text-xs font-medium text-forest-green md:text-sm">
                 {label}

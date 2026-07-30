@@ -1,43 +1,7 @@
 import React from "react";
-import {
-  CalendarDays,
-  School,
-  DoorOpen,
-  Clock3,
-  UserRound,
-  ChevronDown,
-} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
-const INFO_FIELDS = [
-  {
-    key: "classSchedule",
-    label: "Class Schedule",
-    icon: CalendarDays,
-  },
-  {
-    key: "gradeLevel",
-    label: "Grade Level",
-    icon: School,
-  },
-  {
-    key: "room",
-    label: "Room",
-    icon: DoorOpen,
-  },
-  {
-    key: "classTime",
-    label: "Class Time",
-    icon: Clock3,
-  },
-  {
-    key: "adviser",
-    label: "Adviser",
-    icon: UserRound,
-  },
-];
-
-const StudentCard = ({ student }) => {
-  const [spin, setSpin] = React.useState(false);
+const StudentCard = ({ student, spin, setSpin, infoFields, summaryFields }) => {
   return (
     <div className="flex flex-col gap-3 rounded-3xl border border-swamp-green/10 bg-bone p-3 md:gap-6 md:p-6">
 
@@ -71,30 +35,22 @@ const StudentCard = ({ student }) => {
 
       {/* Summary */}
       <div className="grid grid-cols-2 gap-2 md:gap-4">
-        <div className="flex flex-col justify-between rounded-2xl bg-white p-2 shadow-sm md:p-5">
-          <span className="truncate text-2xs uppercase tracking-wider text-gray-500 md:text-xs">
-            School Year
-          </span>
+        {summaryFields.map(({ key, label, fallback }) => (
+          <div key={key} className="flex flex-col justify-between rounded-2xl bg-white p-2 shadow-sm md:p-5">
+            <span className="truncate text-2xs uppercase tracking-wider text-gray-500 md:text-xs">
+              {label}
+            </span>
 
-          <p className="truncate text-xs font-[PoppinsBold] text-swamp-green md:text-lg">
-            {student.sy}
-          </p>
-        </div>
-
-        <div className="flex flex-col justify-between rounded-2xl bg-white p-2 shadow-sm md:p-5">
-          <span className="truncate text-2xs uppercase tracking-wider text-gray-500 md:text-xs">
-            Learner Reference Number
-          </span>
-
-          <p className="truncate text-xs font-[PoppinsBold] text-swamp-green md:text-lg">
-            {student.lrn || "Not Available"}
-          </p>
-        </div>
+            <p className="truncate text-xs font-[PoppinsBold] text-swamp-green md:text-lg">
+              {student[key] || fallback}
+            </p>
+          </div>
+        ))}
       </div>
 
       {/* Details */}
       <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5 md:gap-4">
-        {INFO_FIELDS.map(({ key, label, icon: Icon }) => (
+        {infoFields.map(({ key, label, icon: Icon }) => (
           <div
             key={key}
             className="flex flex-row items-center gap-2 rounded-2xl bg-white p-2 shadow-sm transition hover:-translate-y-1 hover:shadow-lg md:flex-col md:gap-4 md:p-5"

@@ -1,34 +1,6 @@
 import React from "react";
-import {
-  User,
-  Phone,
-  UserRound,
-} from "lucide-react";
 
-const GUARDIAN_FIELDS = [
-  {
-    key: "lastName",
-    label: "Last Name",
-    icon: User,
-  },
-  {
-    key: "firstName",
-    label: "First Name",
-    icon: User,
-  },
-  {
-    key: "middleName",
-    label: "Middle Name",
-    icon: User,
-  },
-  {
-    key: "contactNo",
-    label: "Contact Number",
-    icon: Phone,
-  },
-];
-
-const GuardianCard = ({ guardian }) => {
+const GuardianCard = ({ guardian, guardianFields }) => {
   return (
     <div className="flex flex-col gap-3 md:gap-5">
       <div className="flex items-center gap-3">
@@ -44,7 +16,7 @@ const GuardianCard = ({ guardian }) => {
       </div>
 
       <div className="grid grid-cols-2 gap-2 md:gap-4">
-        {GUARDIAN_FIELDS.map(({ key, label, icon: Icon }) => (
+        {guardianFields.map(({ key, label, icon: Icon }) => (
           <div
             key={key}
             className="flex flex-row items-center gap-2 rounded-2xl border border-swamp-green/10 bg-bone p-2 transition hover:-translate-y-1 hover:shadow-lg md:flex-col md:gap-4 md:p-5"
