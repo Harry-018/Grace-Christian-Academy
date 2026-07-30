@@ -12,8 +12,6 @@ import HomePage from "./Home/HomePage.jsx";
 import TransportationPage from "./Home/TransportationPage.jsx";
 import Admission from "./Home/Admission.jsx";
 import TuitionPage from "./Home/TuitionPage.jsx";
-import Form from "./Home/Form.jsx";
-
 import RootLayout from "./Layout/RootLayout.jsx";
 import ParentsDashboard from "./Home/ParentsDashboard.jsx";
 import ParentsLayout from "./Layout/ParentsLayout.jsx";
@@ -28,7 +26,6 @@ const App = () => {
         <Route path="transport" element={<TransportationPage />} />
         <Route path="admission" element={<Admission />} />
         <Route path="tuition" element={<TuitionPage />} />
-        <Route path="form" element={<Form />} />
       </Route>, 
       <Route path="/parents" element={<ParentsLayout />}>
         <Route index element={<ParentsDashboard />} />
