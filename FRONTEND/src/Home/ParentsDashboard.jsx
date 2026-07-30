@@ -1,6 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { CalendarDays, School, DoorOpen, Clock3, UserRound } from "lucide-react";
 import StudentInfo from '../Components/ParentsComponents/StudentInfo'
 import Announcement from '../Components/ParentsComponents/Announcement'
+
+const INFO_FIELDS = [
+  { key: "classSchedule", label: "Class Schedule", icon: CalendarDays },
+  { key: "gradeLevel", label: "Grade Level", icon: School },
+  { key: "room", label: "Room", icon: DoorOpen },
+  { key: "classTime", label: "Class Time", icon: Clock3 },
+  { key: "adviser", label: "Adviser", icon: UserRound },
+];
+
+const SUMMARY_FIELDS = [
+  { key: "sy", label: "School Year" },
+  { key: "lrn", label: "Learner Reference Number", fallback: "Not Available" },
+];
 
 const student = {
   fullName: "Santiago, Margarett",
@@ -46,6 +60,7 @@ const announcements = [
 const ParentsDashboard = () => {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [spin, setSpin] = useState(false);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -61,7 +76,7 @@ const ParentsDashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-bone px-5 py-6 font-[Poppins]">
+    <div className="min-h-screen bg-bone px-5 py-6 font-[Poppins] cursor-default">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
 
         {/* Student */}
@@ -71,7 +86,7 @@ const ParentsDashboard = () => {
               Student Information
             </h2>
           </div>
-          <StudentInfo student={student} />
+          <StudentInfo student={student} spin={spin} setSpin={setSpin} infoFields={INFO_FIELDS} summaryFields={SUMMARY_FIELDS} />
         </div>
 
         <span className="mx-auto max-w-7xl w-full text-sm font-[PoppinsBold] text-swamp-green py-8 sm:text-lg md:text-xl">
