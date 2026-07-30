@@ -2,23 +2,23 @@ import React from 'react'
 
 const Announcement = ({ title, posted, message, date, time, venue }) => {
   return (
-    <div className="w-full h-flex font-[Poppins] cursor-default">
-      <div className="flex flex-col gap-3 rounded-2xl bg-bone p-4 shadow-sm sm:gap-4 sm:p-5 md:p-6">
+    <div className="min-w-70 md:min-w-96 lg:min-w-100 snap-start font-[Poppins] cursor-default h-full">
+      <div className="flex h-full flex-col gap-2 rounded-2xl bg-bone p-3 shadow-sm sm:gap-4 sm:p-5 lg:p-6">
         {/* Header row */}
         <div className="flex flex-col gap-1 lg:flex-row lg:items-start lg:justify-between lg:gap-4">
-          <h2 className="text-sm font-[PoppinsBold] text-swamp-green sm:text-base md:text-lg">
+          <h2 className="text-xs font-[PoppinsBold] text-swamp-green sm:text-sm lg:text-lg">
             {title}
           </h2>
-          <span className="shrink-0 whitespace-nowrap text-[11px] text-ashlight sm:text-xs md:text-sm">
+          <span className="shrink-0 whitespace-nowrap text-2xs text-ashlight sm:text-xs lg:text-sm">
             Posted on: {posted}
           </span>
         </div>
 
-        <p className="border-t pt-3 text-xs leading-relaxed text-ashlight sm:text-sm md:text-base">
+        <p className="flex-1 border-t py-2 text-[11px] leading-relaxed text-ashlight sm:text-sm lg:text-base">
           {message}
         </p>
 
-        <ul className="list-disc space-y-2 pl-5 text-xs text-ashlight sm:text-sm md:text-base">
+        <ul className="list-disc space-y-1 pl-4 text-[11px] text-ashlight sm:text-sm lg:text-base">
           <li>Date: {date}</li>
           <li>Time: {time}</li>
           <li>Venue: {venue}</li>
