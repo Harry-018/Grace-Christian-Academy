@@ -40,18 +40,18 @@ const Security = () => {
     <div className="min-h-screen bg-bone px-5 py-6 font-[Poppins]">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
         {/* Header */}
-        <div className="flex items-center justify-between rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-swamp-green text-white shadow-md">
-              <ShieldCheck size={34} />
+        <div className="flex items-center justify-between rounded-3xl border border-swamp-green/10 bg-white p-4 shadow-sm md:p-6">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-swamp-green text-white shadow-md md:h-16 md:w-16 md:rounded-2xl">
+              <ShieldCheck size={16} className="md:size-8.5" />
             </div>
 
-            <div className="flex flex-col gap-1">
-              <h1 className="text-3xl font-[PoppinsBold] text-swamp-green ">
+            <div className="flex flex-col gap-0.5 md:gap-1">
+              <h1 className="text-lg font-[PoppinsBold] text-swamp-green md:text-3xl">
                 Security Settings
               </h1>
 
-              <p className="text-sm text-gray-500">
+              <p className="text-[11px] text-gray-500 md:text-sm">
                 Manage your account and enrolled student information.
               </p>
             </div>
@@ -59,10 +59,10 @@ const Security = () => {
         </div>
 
         {/* Student */}
-        <div className="flex flex-col gap-4 rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+        <div className="flex flex-col gap-3 rounded-3xl border border-swamp-green/10 bg-white p-4 shadow-sm md:gap-4 md:p-6">
           <div className="flex items-center gap-3">
 
-            <h2 className="text-xl font-[PoppinsBold] text-gray-500">
+            <h2 className="text-sm font-[PoppinsBold] text-gray-500 md:text-xl">
               Student Information
             </h2>
           </div>
@@ -70,21 +70,21 @@ const Security = () => {
         </div>
 
         {/* Guardian + Account */}
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="flex flex-col gap-4 rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+        <div className="grid gap-4 md:gap-6 lg:grid-cols-2">
+          <div className="flex flex-col gap-3 rounded-3xl border border-swamp-green/10 bg-white p-4 shadow-sm md:gap-4 md:p-6">
             <div className="flex items-center gap-3">
 
-              <h2 className="text-xl font-[PoppinsBold] text-gray-500">
+              <h2 className="text-sm font-[PoppinsBold] text-gray-500 md:text-xl">
                 Guardian Information
               </h2>
             </div>
             <GuardianCard guardian={guardian} />
           </div>
 
-          <div className="flex flex-col gap-4 rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+          <div className="flex flex-col gap-3 rounded-3xl border border-swamp-green/10 bg-white p-4 shadow-sm md:gap-4 md:p-6">
             <div className="flex items-center gap-3">
 
-              <h2 className="text-xl font-[PoppinsBold] text-gray-500">
+              <h2 className="text-sm font-[PoppinsBold] text-gray-500 md:text-xl">
                 Account Details
               </h2>
             </div>
