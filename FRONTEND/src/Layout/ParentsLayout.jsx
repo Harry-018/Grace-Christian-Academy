@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import ParentsHeader from "../Components/ParentsHeader";
-import Footer from "../Components/Footer";
 import Copyright from "../Components/Copyright";
 
 const ParentsLayout = () => {
@@ -13,7 +12,6 @@ const ParentsLayout = () => {
         <Outlet />
       </div>
 
-      <Footer />
       <Copyright />
     </div>
   );

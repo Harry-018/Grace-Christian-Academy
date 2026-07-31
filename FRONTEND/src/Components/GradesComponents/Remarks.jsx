@@ -21,7 +21,7 @@ function Remarks ({remarks , totalDays , absences}) {
         <div className="flex flex-row gap-4 lg:flex-col">
           <div className="flex flex-1 flex-col gap-2 rounded-xl border border-gray-200 bg-gray-50 p-4 md:p-5">
             <span className="text-xs font-medium text-swamp-green md:text-sm">
-              Total Days
+              Total Number of Days
             </span>
 
             <div className="flex items-center justify-center">

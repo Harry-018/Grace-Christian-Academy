@@ -1,50 +1,31 @@
 import React from "react";
 
-function GradesCard({grades, selectedQuarter, onQuarterChange}) {
-  const quarters = [1, 2, 3];
-
+function GradesCard({ categories, categoryIcon: Icon, onViewGrade = () => {} }) {
   return (
-    <div className="rounded-3xl border border-swamp-green/10 bg-white shadow-sm overflow-hidden">
-      {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-gray-50 px-4 py-3 md:px-6 md:py-4">
-        <h2 className="font-[PoppinsBold] text-xs uppercase tracking-wider text-swamp-green md:text-sm">
-          Grades
-        </h2>
+    <div className="rounded-lg grid grid-cols-2 gap-3 p-3 md:grid-cols-2 md:gap-5 md:p-8 font-[Poppins] bg-bone">
+      {categories.map((category) => (
+        <div
+          key={category.label}
+          className="relative flex flex-col items-center gap-3 overflow-hidden rounded-xl border border-stone-300 bg-[#ebe9e4] p-4 md:gap-5 md:px-5 md:py-7"
+        >
+          <Icon
+            className="pointer-events-none absolute -right-6 -bottom-5 rotate-[-20deg] text-swamp-green opacity-40 size-22.5 md:size-35"
+            strokeWidth={1}
+          />
 
-        <div className="flex gap-1.5 md:gap-2">
-          {quarters.map((quarter) => (
-            <button
-              key={quarter}
-              onClick={() => onQuarterChange?.(quarter)}
-              className={`rounded-lg px-3 py-1.5 text-[11px] font-[Poppins] transition md:rounded-md md:px-4 md:py-2 md:text-xs ${
-                selectedQuarter === quarter
-                  ? "bg-swamp-green text-white"
-                  : "text-gray-500 hover:bg-gray-100"
-              }`}
-            >
-              Quarter {quarter}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Grade Legend */}
-      <div className="grid grid-cols-2 gap-2 bg-swamp-green p-3 md:gap-3 md:p-3 lg:grid-cols-4">
-        {grades.map((item) => (
-          <div
-            key={item.grade}
-            className="flex items-center gap-2 rounded-xl bg-white px-3 py-2 md:gap-3"
+          <h2 className="relative text-center text-xs md:text-sm font-[PoppinsBold] uppercase tracking-wide text-swamp-green">
+            {category.label}
+          </h2>
+          
+          <button
+            type="button"
+            onClick={() => onViewGrade(category)}
+            className="relative rounded-lg bg-swamp-green px-4 py-2 text-xs md:px-6 md:py-3 md:text-sm font-[Poppins] text-bone transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg hover:shadow-swamp-green/40 active:scale-95 active:shadow-md"
           >
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-swamp-green/20 font-[PoppinsBold] text-xs md:text-sm">
-              {item.grade}
-            </div>
-
-            <span className="truncate text-xs font-[Poppins] text-gray-700 md:text-sm">
-              {item.meaning}
-            </span>
-          </div>
-        ))}
-      </div>
+            View Grade →
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

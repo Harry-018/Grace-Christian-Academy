@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { CalendarDays, School, DoorOpen, Clock3, UserRound } from "lucide-react";
+import { CalendarDays, School, DoorOpen, Clock3, UserRound, ClipboardList } from "lucide-react";
 import StudentCard from '../Components/GradesComponents/StudentCard'
 import Remarks from '../Components/GradesComponents/Remarks'
+import InfoCard from '../Components/GradesComponents/InfoCard'
 import GradesCard from '../Components/GradesComponents/GradesCard'
+import GradesModal from '../Components/GradesComponents/GradesModal'
 
 const SUMMARY_FIELDS = [
   { key: "sy", label: "School Year" },
@@ -35,12 +37,50 @@ const grades = [
   { grade: "D", meaning: "Development" },
 ];
 
+const CATEGORIES = [
+  {
+    label: "Physical Development",
+    skills: [
+      { name: "Gross Motor Skills", detail: "Running, jumping, climbing", grade: "A" },
+      { name: "Fine Motor Skills", detail: "Drawing, cutting, writing", grade: "B" },
+      { name: "Balance and Coordination", grade: "A" },
+    ],
+  },
+  {
+    label: "Socio -Emotional Development",
+    skills: [
+      { name: "Sharing and Taking Turns", grade: "B" },
+      { name: "Following Directions", grade: "A" },
+      { name: "Expressing Emotions", grade: "C" },
+    ],
+  },
+  {
+    label: "Cognitive Development",
+    skills: [
+      { name: "Letter Recognition", grade: "A" },
+      { name: "Number Recognition", grade: "B" },
+      { name: "Problem Solving", grade: "A" },
+    ],
+  },
+  {
+    label: "Spiritual Development",
+    skills: [
+      { name: "Bible Stories", grade: "A" },
+      { name: "Prayer", grade: "A" },
+      { name: "Kindness to Others", grade: "B" },
+    ],
+  },
+];
+
+const CATEGORY_ICON = ClipboardList;
+
 const Grades = () => {
   const [selectedQuarter, setSelectedQuarter] = useState(1);
   const [spin, setSpin] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   return (
-    <div className="min-h-screen bg-bone px-5 py-6 font-[Poppins] cursor-default">
+    <div className="min-h-screen bg-[#ebe9e4] px-5 py-6 font-[Poppins] cursor-default">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
 
         <StudentCard 
@@ -56,11 +96,27 @@ const Grades = () => {
           absences={"5"}
         />
 
-        <GradesCard 
-          grades={grades} 
-          selectedQuarter={selectedQuarter}
-          onQuarterChange={setSelectedQuarter}
-        />
+        <div className="flex flex-col gap-2">
+          <InfoCard 
+            grades={grades} 
+            selectedQuarter={selectedQuarter}
+            onQuarterChange={setSelectedQuarter}
+          />
+
+          <GradesCard 
+            categories={CATEGORIES} 
+            categoryIcon={CATEGORY_ICON}
+            onViewGrade={setSelectedCategory}
+          />
+
+          {selectedCategory && (
+            <GradesModal
+              category={selectedCategory}
+              onClose={() => setSelectedCategory(null)}
+            />
+          )}
+        </div>
+
       </div>
     </div>
   )
