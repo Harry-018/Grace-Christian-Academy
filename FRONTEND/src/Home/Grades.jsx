@@ -73,7 +73,7 @@ const Grades = () => {
         STUDENT PERFORMANCE
       </span>
 
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 p-2 sm:grid-cols-2 sm:p-6 lg:grid-cols-3 lg:px-10">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 px-2 pt-1 sm:grid-cols-2 sm:px-6 sm:pt-3 lg:grid-cols-3 lg:px-10">
         {assessmentData.map((card) => (
           <RatingCard
             key={card.id}

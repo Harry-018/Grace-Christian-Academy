@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ShieldCheck, CalendarDays, School, DoorOpen, Clock3, UserRound, User, Phone, Lock } from "lucide-react";
+import { useState } from "react";
+import { ShieldCheck, CalendarDays, School, DoorOpen, Clock3, UserRound, User, Phone } from "lucide-react";
 
 import StudentCard from "../Components/SecurityComponents/StudentCard";
 import GuardianCard from "../Components/SecurityComponents/GuardianCards";
@@ -72,8 +72,8 @@ const Security = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bone px-5 py-6 font-[Poppins] cursor-default">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
+    <div className="min-h-screen bg-[#ebe9e4] px-5 py-6 font-[Poppins] cursor-default">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
         {/* Header */}
         <div className="flex items-center justify-between rounded-3xl border border-swamp-green/10 bg-white p-4 shadow-sm md:p-6">
           <div className="flex items-center gap-3 md:gap-4">
