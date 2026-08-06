@@ -5,7 +5,7 @@ function RatingCard({ title, overall, ratings }) {
   return (
     <div className="w-full max-w-full rounded-2xl bg-white p-4 sm:p-6 lg:p-8 shadow-md mx-auto sm:mx-0">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-[#3B4A2E] p-3">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-[PoppinsBold] text-[#3B4A2E] p-3">
           {title}
         </h2>
 

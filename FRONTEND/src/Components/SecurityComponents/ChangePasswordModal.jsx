@@ -101,7 +101,7 @@ const ChangePasswordModal = ({ passwordFields, initialPasswords, initialVisibili
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-gray-200 px-4 py-2.5 text-xs font-semibold text-gray-600 transition hover:bg-gray-100 md:px-5 md:py-3 md:text-sm"
+            className="rounded-xl border border-gray-200 px-4 py-2.5 text-xs font-[PoppinsBold] text-gray-600 transition hover:bg-gray-100 md:px-5 md:py-3 md:text-sm"
           >
             Cancel
           </button>

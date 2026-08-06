@@ -20,7 +20,7 @@ const StudentCard = ({ student, spin, setSpin, infoFields, summaryFields }) => {
         <button
           type="button"
           onClick={() => setSpin(!spin)}
-          className="flex items-center gap-1 rounded-lg border border-swamp-green/10 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-gray-500 transition hover:border-swamp-green hover:text-swamp-green md:gap-2 md:rounded-xl md:px-4 md:py-3 md:text-sm"
+          className="flex items-center gap-1 rounded-lg border border-swamp-green/10 bg-white px-2.5 py-1.5 text-[11px] font-[PoppinsBold] text-gray-500 transition hover:border-swamp-green hover:text-swamp-green md:gap-2 md:rounded-xl md:px-4 md:py-3 md:text-sm"
         >
           View Student
           <ChevronDown

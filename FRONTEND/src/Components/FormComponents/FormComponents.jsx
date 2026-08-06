@@ -18,7 +18,7 @@ export const Divider = () => (
 
 export const TextInput = ({ label, value, onChange, required }) => (
   <div className="mb-4 md:flex-1">
-    <label className="block text-xs font-semibold text-gray-600 mb-1 tracking-wide uppercase">
+    <label className="block text-xs font-[PoppinsBold] text-gray-600 mb-1 tracking-wide uppercase">
       {label}{required && <span className="text-red-400 ml-1">*</span>}
     </label>
     <input
@@ -32,7 +32,7 @@ export const TextInput = ({ label, value, onChange, required }) => (
 
 export const DateInput = ({ label, value, onChange, required }) => (
   <div className="mb-4 md:flex-1">
-    <label className="block text-xs font-semibold text-gray-600 mb-1 tracking-wide uppercase">
+    <label className="block text-xs font-[PoppinsBold] text-gray-600 mb-1 tracking-wide uppercase">
       {label}{required && <span className="text-red-400 ml-1">*</span>}
     </label>
     <input
@@ -46,7 +46,7 @@ export const DateInput = ({ label, value, onChange, required }) => (
 
 export const RadioGroup = ({ label, options, value, onChange, required }) => (
   <div className="mb-4">
-    <label className="block text-xs font-semibold text-gray-600 mb-2 tracking-wide uppercase">
+    <label className="block text-xs font-[PoppinsBold] text-gray-600 mb-2 tracking-wide uppercase">
       {label}{required && <span className="text-red-400 ml-1">*</span>}
     </label>
     <div className="flex flex-wrap gap-3">
@@ -55,7 +55,7 @@ export const RadioGroup = ({ label, options, value, onChange, required }) => (
           key={opt.value}
           className={`flex items-center gap-2 px-3 py-2 rounded-xl border cursor-pointer text-sm transition
             ${value === opt.value
-              ? "border-[#5C6B3A] bg-[#f0f3eb] text-[#3d4d20] font-semibold"
+              ? "border-[#5C6B3A] bg-[#f0f3eb] text-[#3d4d20] font-[PoppinsBold]"
               : "border-gray-200 bg-white text-gray-600"
             }`}
         >
@@ -76,7 +76,7 @@ export const RadioGroup = ({ label, options, value, onChange, required }) => (
 
 export const SelectInput = ({ label, options, value, onChange, required }) => (
   <div className="mb-4 md:flex-1">
-    <label className="block text-xs font-semibold text-gray-600 mb-1 tracking-wide uppercase">
+    <label className="block text-xs font-[PoppinsBold] text-gray-600 mb-1 tracking-wide uppercase">
       {label}{required && <span className="text-red-400 ml-1">*</span>}
     </label>
     <select
@@ -98,7 +98,7 @@ export const StepHeader = ({ number, title }) => (
       {number}
     </div>
     <div>
-      <p className="text-2xs font-semibold text-[#7A8C4E] uppercase tracking-widest">Step {number}</p>
+      <p className="text-2xs font-[PoppinsBold] text-[#7A8C4E] uppercase tracking-widest">Step {number}</p>
       <p className="text-sm font-bold text-[#3d4d20]">{title}</p>
     </div>
   </div>
@@ -122,7 +122,7 @@ export const NavButtons = ({ onPrev, onNext, isFirst, isLast, isNextDisabled }) 
     <button
       onClick={onPrev}
       disabled={isFirst}
-      className={`flex-1 py-3 rounded-xl text-sm font-semibold border transition
+      className={`flex-1 py-3 rounded-xl text-sm font-[PoppinsBold] border transition
         ${isFirst
           ? "border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed"
           : "border-[#5C6B3A] text-[#5C6B3A] bg-white active:bg-[#f0f3eb]"
@@ -165,7 +165,7 @@ export const ReviewSection = ({ title, fields }) => (
       {fields.map(({ label, value }) => (
         <div key={label} className="flex justify-between items-start gap-2">
           <span className="text-xs text-gray-500 shrink-0">{label}</span>
-          <span className="text-xs font-semibold text-gray-800 text-right">
+          <span className="text-xs font-[PoppinsBold] text-gray-800 text-right">
             {value || <span className="text-gray-300 italic">—</span>}
           </span>
         </div>

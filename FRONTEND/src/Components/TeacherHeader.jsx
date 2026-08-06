@@ -17,18 +17,18 @@ const SCHOOL = {
 };
 
 const USER = {
-  name: "Rosamanta",
-  role: "Parent Account",
-  dashboardUrl: "/parents",
+  name: "Ms. Rosary Mendez",
+  role: "Teacher Account",
+  dashboardUrl: "/teacher",
   logoutUrl: "/",
 };
 
 const MENU_ITEMS = [
-  { to: "/parents/grades", label: "Grades", Icon: ClipboardList },
-  { to: "/parents/security", label: "Account Settings", Icon: ShieldCheck },
+  { to: "/teacher/grades", label: "Grades", Icon: ClipboardList },
+  { to: "/teacher/security", label: "Account Settings", Icon: ShieldCheck },
 ];
 
-const ParentsHeader = () => {
+const TeacherHeader = () => {
   const [userMenu, setUserMenu] = useState(false);
   const navigate = useNavigate();
 
@@ -127,4 +127,4 @@ const ParentsHeader = () => {
   );
 };
 
-export default ParentsHeader;
+export default TeacherHeader;
