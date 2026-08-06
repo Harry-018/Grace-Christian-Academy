@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { CalendarDays, School, DoorOpen, Clock3, UserRound, ClipboardList } from "lucide-react";
 import StudentCard from '../Components/GradesComponents/StudentCard'
 import Remarks from '../Components/GradesComponents/Remarks'
-import InfoCard from '../Components/GradesComponents/InfoCard'
-import GradesCard from '../Components/GradesComponents/GradesCard'
+import GradesPanel from '../Components/GradesComponents/GradesPanel'
 import GradesModal from '../Components/GradesComponents/GradesModal'
 
 const SUMMARY_FIELDS = [
@@ -97,13 +96,10 @@ const Grades = () => {
         />
 
         <div className="flex flex-col gap-2">
-          <InfoCard 
+          <GradesPanel 
             grades={grades} 
             selectedQuarter={selectedQuarter}
             onQuarterChange={setSelectedQuarter}
-          />
-
-          <GradesCard 
             categories={CATEGORIES} 
             categoryIcon={CATEGORY_ICON}
             onViewGrade={setSelectedCategory}

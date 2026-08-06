@@ -80,7 +80,7 @@ body {
   }
 
   & .react-calendar__tile--active {
-    @apply bg-swamp-green font-semibold text-white shadow-md;
+    @apply bg-swamp-green font-[PoppinsBold] text-white shadow-md;
   }
 }
 

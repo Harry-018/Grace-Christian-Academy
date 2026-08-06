@@ -21,7 +21,7 @@ const StudentCard = ({ studentData, spin, setSpin, infoFields, summaryFields }) 
           <button
             type="button"
             onClick={() => setSpin(!spin)}
-            className="flex items-center gap-1 rounded-lg border border-swamp-green/10 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-gray-500 transition hover:border-swamp-green hover:text-swamp-green md:gap-2 md:rounded-xl md:px-4 md:py-3 md:text-sm"
+            className="flex items-center gap-1 rounded-lg border border-swamp-green/10 bg-white px-2.5 py-1.5 text-[11px] font-[PoppinsBold] text-gray-500 transition hover:border-swamp-green hover:text-swamp-green md:gap-2 md:rounded-xl md:px-4 md:py-3 md:text-sm"
           >
             View Student
             <ChevronDown
@@ -33,7 +33,7 @@ const StudentCard = ({ studentData, spin, setSpin, infoFields, summaryFields }) 
           </button>
           <Link
             to="/parents"
-            className="flex items-center gap-1 rounded-lg border border-swamp-green/10 bg-swamp-green px-2.5 py-1.5 text-[11px] font-semibold text-white md:gap-2 md:rounded-xl md:px-4 md:py-3 md:text-sm"
+            className="flex items-center gap-1 rounded-lg border border-swamp-green/10 bg-swamp-green px-2.5 py-1.5 text-[11px] font-[PoppinsBold] text-white md:gap-2 md:rounded-xl md:px-4 md:py-3 md:text-sm"
           >
             Dashboard →
           </Link>
@@ -55,7 +55,7 @@ const StudentCard = ({ studentData, spin, setSpin, infoFields, summaryFields }) 
       </div>
 
       {/* Details */}
-      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5 md:gap-4">
+      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5 md:gap-4 font-[PoppinsBold]">
         {infoFields.map(({ key, label, icon: Icon }) => (
           <div
             key={key}
