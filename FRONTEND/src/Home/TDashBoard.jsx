@@ -1,6 +1,12 @@
-import { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import SectionCard from "../Components/TeacherDashboard/SectionCard"
 import StudentTable from '../Components/TeacherDashboard/StudentTable';
+
+const CLASS_SECTIONS = [
+  { id: "sampaguita", name: "Sampaguita", level: "Nursery" },
+  { id: "gumamela", name: "Gumamela", level: "Nursery" },
+  { id: "waling-waling", name: "Waling - Waling", level: "Nursery" },
+];
 
 const STUDENTS = [
   {
@@ -11,7 +17,7 @@ const STUDENTS = [
     gender: "Female",
     birthdate: "10/20/2021",
     age: 4,
-  },
+  }, 
   {
     id: 2,
     sectionId: "gumamela",
@@ -21,7 +27,7 @@ const STUDENTS = [
     birthdate: "09/15/2022",
     age: 3,
   },
-  {
+   {
     id: 3,
     sectionId: "waling-waling",
     lrn: "1232173271321",
@@ -32,63 +38,28 @@ const STUDENTS = [
   },
 ];
 
-const MOCK_API = {
-  getSections: () =>
-    new Promise((resolve) =>
-      setTimeout(() => resolve([
-        { id: "sampaguita", name: "Sampaguita", level: "Nursery" },
-        { id: "gumamela", name: "Gumamela", level: "Nursery" },
-        { id: "waling-waling", name: "Waling - Waling", level: "Nursery" },
-      ]), 500)
-    ),
-  getStudents: (sectionId) =>
-    new Promise((resolve) =>
-      setTimeout(() => resolve(
-        STUDENTS.filter((student) => student.sectionId === sectionId)
-      ), 500)
-    ),
-};
 
 const TDashBoard = () => {
-  const [sections, setSections] = useState([]);
-  const [students, setStudents] = useState([]);
-  const [selectedId, setSelectedId] = useState("");
+  const [sections] = useState(CLASS_SECTIONS);
+  const [students] = useState(STUDENTS);
 
-  useEffect(() => {
-    MOCK_API.getSections()
-      .then((response) => {
-        setSections(response);
-        setSelectedId(response[0].id);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (!selectedId) return;
-
-    MOCK_API.getStudents(selectedId)
-      .then((response) => {
-        setStudents(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [selectedId]);
+  const [selectedId, setSelectedId] = useState(sections[0].id);
+  const filteredStudents = students.filter(
+  (student) => student.sectionId === selectedId
+);
 
   return (
     <div className="min-h-screen bg-[#ebe9e4] px-5 py-6 font-[Poppins] cursor-default">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
 
       <SectionCard 
-        sections={sections}
+        sections={CLASS_SECTIONS}
         selectedId={selectedId}
         onSelect={setSelectedId}
       />
 
       <StudentTable 
-        students={students} 
+        students={filteredStudents} 
       />
 
       </div>
