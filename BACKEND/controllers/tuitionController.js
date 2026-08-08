@@ -147,3 +147,104 @@ export const createMethodController = async (req, res) => {
     });
   }
 };
+
+export const updateMethodController = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const data = req.body;
+
+    console.log(req.body);
+
+    const result = await tuitionModel.patchMethod(id, data);
+
+    if (result.numUpdatedRows === 0n) {
+      return res.status(404).json({
+        success: false,
+        message: "Method with ID not found or no changes were made.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Method updated successfully.",
+    });
+  } catch (error) {
+    console.error("Error patching Method:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error.",
+    });
+  }
+};
+
+export const deleteMethodController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await tuitionModel.deleteMethod(id);
+
+    if (result.numDeletedRows === 0n) {
+      return res.status(404).json({
+        success: false,
+        message: "ID not found.",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Method Deleted Successfully.",
+    });
+  } catch (error) {
+    console.error("Error deleting Method:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error.",
+    });
+  }
+};
+
+export const updateInstallmentController = async (req, res) => {
+  try {
+    const { grade_id, method_id } = req.params;
+    const { monthly_installment } = req.body;
+
+    await tuitionModel.updateInstallment(
+      grade_id,
+      method_id,
+      monthly_installment,
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Monthly installment updated successfully.",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const deleteInstallmentController = async (req, res) => {
+  try {
+    const { grade_id, method_id } = req.params;
+    const result = await tuitionModel.deleteInstallment(grade_id, method_id);
+
+    if (result.numUpdatedRows === 0n) {
+      return res.status(404).json({
+        success: false,
+        message: "ID not found.",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Installment Deleted Successfully.",
+    });
+  } catch (error) {
+    console.error("Error deleting Installment:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error.",
+    });
+  }
+};

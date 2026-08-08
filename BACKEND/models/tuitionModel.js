@@ -1,7 +1,11 @@
 import db from "../config/database.js";
 
 export const getGradeLevel = async () => {
-  return db.selectFrom("fees").select(["grade_id", "grade_level"]).execute();
+  return db
+    .selectFrom("fees")
+    .select(["grade_id", "grade_level"])
+    .orderBy("grade_id", "asc")
+    .execute();
 };
 
 export const getTuition = async (id) => {
@@ -104,4 +108,45 @@ export const createMethod = async (data) => {
 
   // Return original insert result if needed
   return result;
+};
+
+export const patchMethod = async (id, data) => {
+  return await db
+    .updateTable("payment_method")
+    .set(data)
+    .where("method_id", "=", id)
+    .executeTakeFirst();
+};
+
+export const deleteMethod = async (id) => {
+  return await db
+    .deleteFrom("payment_method")
+    .where("method_id", "=", id)
+    .executeTakeFirst();
+};
+
+export const updateInstallment = async (
+  grade_id,
+  method_id,
+  monthly_installment,
+) => {
+  return await db
+    .updateTable("fees_method")
+    .set({
+      monthly_installment,
+    })
+    .where("grade_id", "=", grade_id)
+    .where("method_id", "=", method_id)
+    .executeTakeFirst();
+};
+
+export const deleteInstallment = async (grade_id, method_id) => {
+  return await db
+    .updateTable("fees_method")
+    .set({
+      monthly_installment: null,
+    })
+    .where("grade_id", "=", grade_id)
+    .where("method_id", "=", method_id)
+    .executeTakeFirst();
 };

@@ -7,6 +7,10 @@ import {
   updateGradeController,
   deleteGradeController,
   createMethodController,
+  updateMethodController,
+  deleteMethodController,
+  updateInstallmentController,
+  deleteInstallmentController,
 } from "../controllers/tuitionController.js";
 
 const router = express.Router();
@@ -18,5 +22,16 @@ router.delete("/deletegrade/:id", deleteGradeController);
 
 router.get("/gettuition/:id", getTuitionController);
 router.post("/createmethod", createMethodController);
+router.patch("/patchmethod/:id", updateMethodController);
+router.delete("/deletemethod/:id", deleteMethodController);
+
+router.patch(
+  "/patchinstallment/:grade_id/:method_id",
+  updateInstallmentController,
+);
+router.patch(
+  "/removeinstallment/:grade_id/:method_id",
+  deleteInstallmentController,
+);
 
 export default router;

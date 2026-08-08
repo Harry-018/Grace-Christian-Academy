@@ -4,7 +4,8 @@ import transpoRoutes from "./routes/transpoRoutes.js";
 import homeRoutes from "./routes/homeRoutes.js";
 import tuitionRoutes from "./routes/tuitionRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-authRoutes;
+import applicationRoutes from "./routes/applicationRoutes.js";
+
 import cors from "cors";
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use("/api", transpoRoutes);
 app.use("/api", homeRoutes);
 app.use("/api", tuitionRoutes);
 app.use("/api", authRoutes);
+app.use("/api", applicationRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);

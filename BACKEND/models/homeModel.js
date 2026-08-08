@@ -27,21 +27,22 @@ export const patchBanner = async (
 export const getAcademicPrograms = async () => {
   return await db.selectFrom("academic_programs").selectAll().execute();
 };
-export const patchAcademicPrograms = async (id, program, ages, description) => {
+export const patchAcademicPrograms = async (id, updateData) => {
   return await db
     .updateTable("academic_programs")
-    .set({
-      program,
-      ages,
-      description,
-    })
+    .set(updateData)
     .where("id", "=", id)
     .executeTakeFirst();
 };
-export const postAcademicPrograms = async (program, ages, description) => {
+export const postAcademicPrograms = async (
+  program,
+  ages,
+  description,
+  imageurl,
+) => {
   return await db
     .insertInto("academic_programs")
-    .values({ program, ages, description })
+    .values({ program, ages, description, imageurl: imageurl })
     .executeTakeFirst();
 };
 export const deleteAcademicPrograms = async (id) => {
@@ -64,6 +65,19 @@ export const patchMissionVision = async (type, title, description) => {
       description,
     })
     .where("type", "=", type)
+    .executeTakeFirst();
+};
+
+// GCA VIDEO
+export const getVideo = async () => {
+  return await db.selectFrom("home_video").selectAll().execute();
+};
+
+export const patchVideo = async (id, updateData) => {
+  return await db
+    .updateTable("home_video")
+    .set(updateData)
+    .where("id", "=", id)
     .executeTakeFirst();
 };
 

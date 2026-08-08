@@ -1,4 +1,5 @@
 import * as homeModel from "../models/homeModel.js";
+import cloudinary from "../config/cloudinary.js";
 
 export const getBannerController = async (req, res) => {
   try {
@@ -60,12 +61,25 @@ export const updateAcademicProgramsController = async (req, res) => {
   try {
     const { id } = req.params;
     const { program, ages, description } = req.body;
-    const result = await homeModel.patchAcademicPrograms(
-      id,
+
+    const updateData = {
       program,
       ages,
       description,
-    );
+    };
+
+    if (req.file) {
+      const uploadResult = await cloudinary.uploader.upload(
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+        {
+          folder: "academic_programs_pictures",
+        },
+      );
+
+      updateData.imageurl = uploadResult.secure_url;
+    }
+
+    const result = await homeModel.patchAcademicPrograms(id, updateData);
 
     if (result.numUpdatedRows === 0n) {
       return res.status(404).json({
@@ -112,7 +126,24 @@ export const deleteAcademicProgramsController = async (req, res) => {
 export const postAcademicProgramsController = async (req, res) => {
   try {
     const { program, ages, description } = req.body;
-    await homeModel.postAcademicPrograms(program, ages, description);
+
+    console.log(req.body);
+    console.log(req.file);
+
+    let imageurl = null;
+
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+        {
+          folder: "academic_programs_pictures",
+        },
+      );
+
+      imageurl = result.secure_url;
+    }
+
+    await homeModel.postAcademicPrograms(program, ages, description, imageurl);
 
     return res.status(201).json({
       success: true,
@@ -237,6 +268,58 @@ export const deleteReasonsController = async (req, res) => {
     });
   } catch (error) {
     console.error("Error deleting Reason:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error.",
+    });
+  }
+};
+
+export const getVideoController = async (req, res) => {
+  try {
+    const homeVid = await homeModel.getVideo();
+    res.json(homeVid);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+export const updateVideoController = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const updateData = {};
+
+    if (req.file) {
+      const uploadResult = await cloudinary.uploader.upload(
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+        {
+          resource_type: "video",
+          folder: "home_videos",
+        },
+      );
+
+      updateData.videourl = uploadResult.secure_url;
+    }
+
+    const result = await homeModel.patchVideo(id, updateData);
+
+    if (result.numUpdatedRows === 0n) {
+      return res.status(404).json({
+        success: false,
+        message: "Video not found or no changes were made.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Video updated successfully.",
+    });
+  } catch (error) {
+    console.error("Error updating video:", error);
+
     return res.status(500).json({
       success: false,
       message: "Internal server error.",
