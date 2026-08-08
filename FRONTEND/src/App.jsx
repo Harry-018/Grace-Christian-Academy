@@ -16,8 +16,10 @@ import HomePage from "./Home/HomePage.jsx";
 import TransportationPage from "./Home/TransportationPage.jsx";
 import AdmissionPage from "./Home/AdmissionPage.jsx";
 import TuitionPage from "./Home/TuitionPage.jsx";
+import ApplicationFormPage from "./Home/ApplicationFormPage.jsx";
 import NotFound from "./Components/NotFound.jsx";
 import NotAuthorized from "./NotAuthorized.jsx";
+import SuccessApplication from "./SuccessApplication.jsx";
 
 //import admin pages
 import Dashboard from "./Admin/DashboardPage.jsx";
@@ -29,7 +31,6 @@ import ClassesPage from "./Admin/ClassesPage.jsx";
 import Home from "./Admin/WebManagementPages/Home.jsx";
 import Tuitions from "./Admin/WebManagementPages/Tuitions.jsx";
 import Transport from "./Admin/WebManagementPages/Transport.jsx";
-import Admission from "./Admin/WebManagementPages/Admission.jsx";
 
 // import layout
 import RootLayout from "./Layout/HomeLayouts/RootLayout.jsx";
@@ -69,6 +70,8 @@ const App = () => {
           <Route path="tuition" element={<TuitionLayout />}>
             <Route index element={<TuitionPage />} loader={tuitionLoader} />
           </Route>
+          <Route path="enrollment" element={<ApplicationFormPage />} />
+          <Route path="successapplication" element={<SuccessApplication />} />
         </Route>
         ,{/* admin pages */}
         <Route
@@ -107,7 +110,6 @@ const App = () => {
               element={<Transport />}
               loader={transpoLoader}
             ></Route>
-            <Route path="admission" element={<Admission />} />
           </Route>
         </Route>
         ,

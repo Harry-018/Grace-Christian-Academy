@@ -13,6 +13,9 @@ const WebManagementStore = create((set) => ({
   isMissVisModalOpen: false,
   selectedMissVis: null,
 
+  isHomeVidModalOpen: false,
+  selectedVid: null,
+
   isReasonsModalOpen: false,
   selectedReasons: [],
   isPostReasonsModalOpen: false,
@@ -65,6 +68,11 @@ const WebManagementStore = create((set) => ({
       isMissVisModalOpen: true,
       selectedMissVis: missvis,
     });
+  },
+
+  //home video
+  openHomeVideoModal: (video) => {
+    set({ isHomeVidModalOpen: true, selectedVid: video });
   },
 
   // why parents choose us
@@ -137,6 +145,11 @@ const WebManagementStore = create((set) => ({
       isDeleteAcadProgModalOpen: false,
       selectedProgram: null,
     });
+  },
+
+  //home video
+  closeHomeVideoModal: () => {
+    set({ isHomeVidModalOpen: false, selectedVid: null });
   },
 
   // why parents choose us

@@ -51,7 +51,7 @@ const TransportationPage = () => {
       </div>
 
       <div className="p-5 text-bone md:w-160 lg:w-250 xl:w-300">
-        <p className="rounded-2xl bg-forest-green p-5 text-justify text-sm inset-shadow-med lg:text-sm">
+        <p className="rounded-2xl bg-swamp-green p-5 text-justify text-sm inset-shadow-med lg:text-sm">
           Note: These rates are based on standard routes. The final
           transportation fee may vary depending on the exact pickup location and
           van availability. If you would like to avail of the transportation

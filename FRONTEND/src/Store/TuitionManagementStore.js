@@ -6,9 +6,22 @@ const TuitionManagementStore = create((set) => ({
   isDeleteGradeOpen: false,
 
   isCreateMethodOpen: false,
+  isEditMethodOpen: false,
+  isDeleteMethodOpen: false,
+
+  isEditInstallmentModalOpen: false,
+  isRemoveInstallmentModalOpen: false,
+
+  refreshTuition: 0,
+
+  RefreshTuition: () =>
+    set((state) => ({
+      refreshTuition: state.refreshTuition + 1,
+    })),
 
   selectedGradeLevel: null,
   selectedMethod: null,
+  selectedInstallment: null,
 
   openCreateGradeModal: (tuition) => {
     set({
@@ -39,6 +52,35 @@ const TuitionManagementStore = create((set) => ({
       isCreateMethodOpen: true,
     });
   },
+  openEditMethodModal: (method) => {
+    console.log(method);
+
+    set({
+      isEditMethodOpen: true,
+      selectedMethod: method,
+    });
+  },
+
+  openDeleteMethodModal: (method) => {
+    console.log(method);
+
+    set({
+      isDeleteMethodOpen: true,
+      selectedMethod: method,
+    });
+  },
+
+  openInstallmentModal: (installment) => {
+    console.log("Store received:", installment);
+    set({ isEditInstallmentModalOpen: true, selectedInstallment: installment });
+  },
+  openRemoveInstallmentModal: (installment) => {
+    console.log("Store received:", installment);
+    set({
+      isRemoveInstallmentModalOpen: true,
+      selectedInstallment: installment,
+    });
+  },
 
   closeCreateGradeModal: () => {
     set({
@@ -63,6 +105,28 @@ const TuitionManagementStore = create((set) => ({
   closeCreateMethodModal: () => {
     set({
       isCreateMethodOpen: false,
+    });
+  },
+  closeEditMethodModal: () => {
+    set({
+      isEditMethodOpen: false,
+      selectedMethod: null,
+    });
+  },
+
+  closeDeleteMethodModal: () => {
+    set({
+      isDeleteMethodOpen: false,
+      selectedMethod: null,
+    });
+  },
+  closeInstallmentModal: () => {
+    set({ isEditInstallmentModalOpen: false, selectedInstallment: null });
+  },
+  closeRemoveInstallmentModal: () => {
+    set({
+      isRemoveInstallmentModalOpen: false,
+      selectedInstallment: null,
     });
   },
 }));

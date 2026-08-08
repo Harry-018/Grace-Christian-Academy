@@ -18,11 +18,13 @@ const HomePage = () => {
   const {
     bannerData,
     academicCardData,
+    homeVideoData,
     mission_visionData,
     reasonsData,
     childActivityData,
   } = useLoaderData();
 
+  const homevid = homeVideoData?.[0];
   return (
     <div className="flex h-full w-full flex-col gap-y-10 lg:gap-y-20">
       {/* Banner */}
@@ -49,7 +51,7 @@ const HomePage = () => {
             <span className="flex items-center justify-between text-xs lg:text-lg">
               <h3>School Year {banner.school_year}</h3>
               {banner.admission_status === "Open" && (
-                <Link to="enrollmentform">
+                <Link to="enrollment">
                   <GreenButton Label={"Enroll Now"} />
                 </Link>
               )}
@@ -69,7 +71,7 @@ const HomePage = () => {
 
           <div className="no-scrollbar flex snap-x snap-mandatory justify-center-safe gap-5 overflow-x-auto px-5 py-5">
             {academicCardData.map((card) => (
-              <Card key={card.id} card={card} Cimg="/assets/pre-kinder.avif" />
+              <Card key={card.id} card={card} Cimg={card.imageurl} />
             ))}
           </div>
         </div>
@@ -111,10 +113,10 @@ const HomePage = () => {
           </span>
           {/* video */}
           <video
-            className="h-50 w-full rounded-2xl inset-shadow-med md:h-75 lg:h-80"
+            className="h-50 w-fit rounded-2xl bg-egg-dark inset-shadow-med md:h-75 lg:h-80"
             controls
           >
-            <source src="" type="video/mp4" />
+            <source src={homevid.videourl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

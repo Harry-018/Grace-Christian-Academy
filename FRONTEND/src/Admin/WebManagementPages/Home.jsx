@@ -9,12 +9,14 @@ const Home = () => {
   const {
     bannerData,
     academicCardData,
+    homeVideoData,
     mission_visionData,
     reasonsData,
     childActivityData,
   } = useLoaderData();
 
   const banner = bannerData[0];
+  const homevid = homeVideoData?.[0];
   const missvis = mission_visionData[""];
 
   // Open Modals State
@@ -30,6 +32,10 @@ const Home = () => {
   );
   const openDeleteAcadProgramsModal = WebManagementStore(
     (state) => state.openDeleteAcadProgramsModal,
+  );
+
+  const openHomeVideoModal = WebManagementStore(
+    (state) => state.openHomeVideoModal,
   );
 
   const openReasonsModal = WebManagementStore(
@@ -154,20 +160,30 @@ const Home = () => {
             {selectedProgram ? (
               <div className="flex flex-col gap-5">
                 <div className="flex gap-5">
-                  <div className="flex flex-col gap-y-3">
-                    <h3 className="text-xs">Program:</h3>
-                    <div className="w-25 rounded-lg border border-swamp-green p-3 text-xs opacity-75">
-                      {selectedProgram.program}
+                  <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-y-3">
+                      <h3 className="text-xs">Program:</h3>
+                      <div className="w-25 rounded-lg border border-swamp-green p-3 text-xs opacity-75">
+                        {selectedProgram.program}
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-y-3">
+                      <h3 className="text-xs">Age Limit:</h3>
+                      <div className="w-25 rounded-lg border border-swamp-green p-3 text-xs opacity-75">
+                        {selectedProgram.ages}
+                      </div>
                     </div>
                   </div>
                   <div className="flex flex-col gap-y-3">
-                    <h3 className="text-xs">Age Limit:</h3>
-                    <div className="w-25 rounded-lg border border-swamp-green p-3 text-xs opacity-75">
-                      {selectedProgram.ages}
-                    </div>
+                    <h3 className="text-xs">Image:</h3>
+                    <img
+                      className="max-w-50 rounded-lg bg-bone ring-2 ring-swamp-green ring-offset-4 ring-offset-bone"
+                      src={selectedProgram.imageurl}
+                      alt="no current image"
+                    />
                   </div>
                 </div>
-
+                <div className="flex flex-col gap-y-3"></div>
                 <div className="flex flex-col gap-y-3">
                   <h3 className="text-xs">Description:</h3>
                   <div className="rounded-lg border border-swamp-green p-3 text-xs opacity-75">
@@ -223,16 +239,27 @@ const Home = () => {
         {/* video + why parents choose us */}
 
         <div className="flex flex-col gap-y-10 rounded-2xl bg-bone p-5 inset-shadow-med">
-          <label className="flex flex-col gap-5 font-[PoppinsBold] text-swamp-green lg:text-lg">
-            Grace Hands Learning Story
-            <video
-              className="h-50 w-[50%] rounded-2xl inset-shadow-med"
-              controls
-            >
-              <source src="" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </label>
+          <span className="flex flex-col gap-5 font-[PoppinsBold] text-swamp-green lg:text-lg">
+            <span className="flex justify-between">
+              Grace Hands Learning Story
+              <button
+                onClick={() => openHomeVideoModal(homevid)}
+                className="text-x flex cursor-pointer items-center font-[Poppins] text-ashlight active:scale-95 md:text-sm lg:text-base"
+              >
+                <EditIcon className="h-5" />
+                Edit
+              </button>
+            </span>
+            <span className="flex w-full">
+              <video
+                className="h-50 w-fit rounded-2xl bg-egg-dark inset-shadow-med"
+                controls
+              >
+                <source src={homevid.videourl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </span>
+          </span>
 
           <div className="flex flex-wrap items-center justify-between gap-y-3 text-sm">
             <h1 className="font-[PoppinsBold] text-swamp-green md:text-base lg:text-lg">

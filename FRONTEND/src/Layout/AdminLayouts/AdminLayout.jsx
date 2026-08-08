@@ -13,6 +13,9 @@ import EditReasonsModal from "../../Admin/Modals/HomeManagementModals/EditReason
 import EditChildActsModal from "../../Admin/Modals/HomeManagementModals/EditChildActsModal.jsx";
 import EditTranspoModal from "../../Admin/Modals/TransportManagementModals/EditTranspoModal.jsx";
 import EditGradeModal from "../../Admin/Modals/TuitionManagementModals/EditGradeModal.jsx";
+import EditMethodModal from "../../Admin/Modals/TuitionManagementModals/EditMethodModal.jsx";
+import EditInstallmentModal from "../../Admin/Modals/TuitionManagementModals/EditInstallmentModal.jsx";
+import EditHomeVidModal from "../../Admin/Modals/HomeManagementModals/EditHomeVidModal.jsx";
 
 //import addModals
 import AddAcadProgramsModal from "../../Admin/Modals/HomeManagementModals/AddAcadProgramsModal.jsx";
@@ -26,6 +29,8 @@ import DeleteReasonsModal from "../../Admin/Modals/HomeManagementModals/DeleteRe
 import DeleteChildActsModal from "../../Admin/Modals/HomeManagementModals/DeleteChildActsModal.jsx";
 import DeleteTranspoModal from "../../Admin/Modals/TransportManagementModals/DeleteTranspoModal.jsx";
 import DeleteGradeModal from "../../Admin/Modals/TuitionManagementModals/DeleteGradeModal.jsx";
+import DeleteMethodModal from "../../Admin/Modals/TuitionManagementModals/DeleteMethodModal.jsx";
+import RemoveInstallmentModal from "../../Admin/Modals/TuitionManagementModals/RemoveInstallmentModal.jsx";
 
 // import createModals
 import CreateGradeModal from "../../Admin/Modals/TuitionManagementModals/CreateGradeModal.jsx";
@@ -48,6 +53,13 @@ const AdminLayout = () => {
   const isDeleteAcadProgramsOpen = WebManagementStore(
     (state) => state.isDeleteAcadProgModalOpen,
   );
+
+  //homevid vid
+  const isHomeVidModalOpen = WebManagementStore(
+    (state) => state.isHomeVidModalOpen,
+  );
+
+  // reasons
   const isReasonsOpen = WebManagementStore((state) => state.isReasonsModalOpen);
   const isPostReasonsOpen = WebManagementStore(
     (state) => state.isPostReasonsModalOpen,
@@ -55,6 +67,8 @@ const AdminLayout = () => {
   const isDeleteReasonsOpen = WebManagementStore(
     (state) => state.isDeleteReasonsModalOpen,
   );
+
+  // child acts
   const isChildActsOpen = WebManagementStore(
     (state) => state.isChildActsModalOpen,
   );
@@ -91,6 +105,18 @@ const AdminLayout = () => {
   const isCreateMethodOpen = TuitionManagementStore(
     (state) => state.isCreateMethodOpen,
   );
+  const isEditMethodOpen = TuitionManagementStore(
+    (state) => state.isEditMethodOpen,
+  );
+  const isDeleteMethodOpen = TuitionManagementStore(
+    (state) => state.isDeleteMethodOpen,
+  );
+  const isEditInstallmentOpen = TuitionManagementStore(
+    (state) => state.isEditInstallmentModalOpen,
+  );
+  const isRemoveInstallmentOpen = TuitionManagementStore(
+    (state) => state.isRemoveInstallmentModalOpen,
+  );
 
   return (
     <div className="flex max-h-screen flex-col overflow-hidden font-[Poppins] lg:flex-row">
@@ -106,6 +132,9 @@ const AdminLayout = () => {
       {isChildActsOpen && <EditChildActsModal />}
       {isEditTranspoOpen && <EditTranspoModal />}
       {isEditGradeOpen && <EditGradeModal />}
+      {isEditMethodOpen && <EditMethodModal />}
+      {isEditInstallmentOpen && <EditInstallmentModal />}
+      {isHomeVidModalOpen && <EditHomeVidModal />}
       {/* Add Modals */}
       {isPostAcadProgramsOpen && <AddAcadProgramsModal />}
       {isPostReasonsOpen && <AddReasonsModal />}
@@ -117,6 +146,8 @@ const AdminLayout = () => {
       {isDeleteChildActsOpen && <DeleteChildActsModal />}
       {isDeleteTranspoOpen && <DeleteTranspoModal />}
       {isDeleteGradeOpen && <DeleteGradeModal />}
+      {isDeleteMethodOpen && <DeleteMethodModal />}
+      {isRemoveInstallmentOpen && <RemoveInstallmentModal />}
 
       {/* Create Modals */}
       {isCreateGradeOpen && <CreateGradeModal />}

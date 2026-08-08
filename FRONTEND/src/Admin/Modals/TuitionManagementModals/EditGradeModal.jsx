@@ -107,17 +107,6 @@ const EditGradeModal = () => {
 
               <div className="grid w-full grid-cols-2 gap-5">
                 <label className="flex w-full flex-col gap-2 text-2xs sm:text-sm">
-                  Miscellaneous Fee:
-                  <input
-                    type="number"
-                    required
-                    name="miscel_fee"
-                    onChange={handleChange}
-                    value={formData.miscel_fee}
-                    className="no-scrollbar w-40 resize-none rounded-lg border border-swamp-green/50 text-xs ring-0 sm:text-sm"
-                  />
-                </label>
-                <label className="flex w-full flex-col gap-2 text-2xs sm:text-sm">
                   Books:
                   <input
                     type="number"

@@ -17,6 +17,7 @@ const EditAcadProgramsModal = () => {
     description: "",
   });
   const [isSaving, setIsSaving] = useState(false);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     if (!selectedProgram) return;
@@ -37,7 +38,17 @@ const EditAcadProgramsModal = () => {
     try {
       setIsSaving(true);
 
-      await updateAcadPrograms(selectedProgram.id, formData);
+      const submitData = new FormData();
+
+      submitData.append("program", formData.program);
+      submitData.append("ages", formData.ages);
+      submitData.append("description", formData.description);
+
+      if (image) {
+        submitData.append("program_image", image);
+      }
+
+      await updateAcadPrograms(selectedProgram.id, submitData);
 
       revalidator.revalidate();
 
@@ -94,6 +105,15 @@ const EditAcadProgramsModal = () => {
               />
             </label>
           </div>
+          <label className="flex w-full flex-col gap-2 text-2xs sm:text-sm">
+            Program Image:
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+              className="w-full rounded-lg border border-swamp-green/50 p-2 text-xs"
+            />
+          </label>
           <div className="flex gap-3">
             <button
               type="button"

@@ -33,14 +33,6 @@ const WebManagementLayout = () => {
           >
             Transportation
           </NavLink>
-          <NavLink
-            to="admission"
-            className={({ isActive }) =>
-              `${isActive ? " rounded-lg bg-swamp-green text-bone inset-shadow-small" : "text-ashlight"} p-3 duration-300`
-            }
-          >
-            Admission
-          </NavLink>
         </div>
       </div>
       <div>

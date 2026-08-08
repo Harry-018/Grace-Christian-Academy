@@ -6,7 +6,7 @@ import StepCard from "../Components/StepCard.jsx";
 
 const AdmissionPage = () => {
   return (
-    <div className="flex flex-col items-center gap-y-15 p-5 lg:grid lg:grid-cols-2 lg:items-start lg:p-10">
+    <div className="flex flex-col items-center gap-y-15 p-5 lg:p-10">
       <div className="flex w-full flex-col gap-y-10">
         <h1 className="font-[PoppinsBold] text-swamp-green xs:text-xl lg:text-2xl">
           ADMISSION

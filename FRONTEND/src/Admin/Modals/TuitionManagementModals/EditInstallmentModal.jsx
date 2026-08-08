@@ -1,26 +1,33 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import axios from "axios";
 import TuitionManagementStore from "../../../Store/TuitionManagementStore";
-import { useRevalidator } from "react-router-dom";
-import { createMethod } from "../../../services/service/tuitionService";
+import { updateInstallment } from "../../../services/service/tuitionService";
 
-const CreateMethodModal = () => {
-  const revalidator = useRevalidator();
+const EditInstallmentModal = () => {
+  const closeInstallmentModal = TuitionManagementStore(
+    (state) => state.closeInstallmentModal,
+  );
 
-  const closeCreateMethodModal = TuitionManagementStore(
-    (state) => state.closeCreateMethodModal,
+  const selectedInstallment = TuitionManagementStore(
+    (state) => state.selectedInstallment,
   );
 
   const RefreshTuition = TuitionManagementStore(
     (state) => state.RefreshTuition,
   );
+
   const [formData, setFormData] = useState({
-    method: "",
-    due_date: "",
-    // monthly_installment: "",
-    discount: "",
+    monthly_installment: "",
   });
   const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (!selectedInstallment) return;
+
+    setFormData({
+      monthly_installment: selectedInstallment.monthly_installment,
+    });
+  }, [selectedInstallment]);
 
   // for handling input changes
   const handleChange = (e) => {
@@ -32,13 +39,15 @@ const CreateMethodModal = () => {
     try {
       setIsSaving(true);
 
-      await createMethod(formData);
-
-      revalidator.revalidate();
+      await updateInstallment(
+        selectedInstallment.grade_id,
+        selectedInstallment.method_id,
+        formData,
+      );
 
       RefreshTuition();
-      closeCreateMethodModal();
-      alert(`Successfully Added  ${formData.method}`);
+      closeInstallmentModal();
+      alert(`Successfully Edited Monthly Installment `);
     } catch (error) {
       console.error(error);
     } finally {
@@ -50,7 +59,7 @@ const CreateMethodModal = () => {
     <div className="fixed flex h-full w-full flex-col items-center justify-center bg-egg-dark/50 p-5">
       <div className="flex flex-col items-center gap-5 rounded-2xl bg-bone p-5 inset-shadow-med">
         <h3 className="font-[PoppinsBold] text-swamp-green">
-          Create Payment Method
+          Edit Monthly Installment
         </h3>
         <form
           onSubmit={handleSubmit}
@@ -58,46 +67,24 @@ const CreateMethodModal = () => {
         >
           <div className="flex w-full flex-col gap-5">
             <label className="flex w-full flex-col gap-2 text-2xs sm:text-sm">
-              Payment Method:
+              Monthly Installment:
               <input
+                type="number"
+                min="0"
+                step="0.01"
                 required
-                type="text"
-                required
-                name="method"
+                name="monthly_installment"
+                value={formData.monthly_installment}
                 onChange={handleChange}
                 className="no-scrollbar w-40 resize-none rounded-lg border border-swamp-green/50 text-xs ring-0 sm:text-sm"
               />
             </label>
-
-            <div className="flex flex-col gap-5">
-              <label className="flex flex-col gap-2 text-2xs sm:text-sm">
-                Due Date:
-                <input
-                  type="text"
-                  name="due_date"
-                  onChange={handleChange}
-                  className="no-scrollbar resize-none rounded-lg border border-swamp-green/50 text-xs ring-0 sm:text-sm"
-                />
-              </label>
-
-              <label className="flex w-full flex-col gap-2 text-2xs sm:text-sm">
-                Discount:
-                <input
-                  required
-                  min={0}
-                  type="number"
-                  name="discount"
-                  onChange={handleChange}
-                  className="no-scrollbar w-40 resize-none rounded-lg border border-swamp-green/50 text-xs ring-0 sm:text-sm"
-                />
-              </label>
-            </div>
           </div>
           <div className="flex gap-3">
             <button
               type="button"
               className="cursor-pointer rounded-lg p-2 text-sm duration-300 hover:opacity-75 active:scale-95"
-              onClick={closeCreateMethodModal}
+              onClick={closeInstallmentModal}
               disabled={isSaving}
             >
               Cancel
@@ -107,7 +94,7 @@ const CreateMethodModal = () => {
               disabled={isSaving}
               className="cursor-pointer rounded-lg bg-swamp-green p-2 font-[PoppinsBold] text-sm text-bone duration-300 hover:opacity-75 active:scale-95"
             >
-              {isSaving ? "Creating..." : "Create"}
+              {isSaving ? "Saving..." : "Save"}
             </button>
           </div>
         </form>
@@ -116,4 +103,4 @@ const CreateMethodModal = () => {
   );
 };
 
-export default CreateMethodModal;
+export default EditInstallmentModal;
