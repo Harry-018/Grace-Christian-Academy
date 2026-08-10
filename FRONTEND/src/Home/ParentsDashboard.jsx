@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import axios from 'axios'
 import { CalendarDays, School, DoorOpen, Clock3, UserRound } from "lucide-react";
 import StudentInfo from '../Components/ParentsComponents/StudentInfo'
 import Announcement from '../Components/ParentsComponents/Announcement'
@@ -11,21 +12,14 @@ const INFO_FIELDS = [
   { key: "adviser", label: "Adviser", icon: UserRound },
 ];
 
-const SUMMARY_FIELDS = [
-  { key: "sy", label: "School Year" },
-  { key: "lrn", label: "Learner Reference Number", fallback: "Not Available" },
+const ID_FIELDS = [
+  { key: "lrn", label: "Learner Reference Number" },
+  { key: "studentId", label: "Student ID Number" },
 ];
 
-const student = {
-  fullName: "Santiago, Margarett",
-  lrn: null,
-  sy: "2025 - 2026",
-  classSchedule: "Monday - Thursday",
-  gradeLevel: "Nursery",
-  room: "Mahogany - 3",
-  classTime: "7:00 AM - 11:00 AM",
-  adviser: "Ms. Rosary Mendez",
-};
+const SCHOOL_YEAR_FIELD = { key: "sy", label: "School Year" };
+
+const API_URL = "http://localhost:5000/students";
 
 const announcements = [
   {
@@ -46,51 +40,90 @@ const announcements = [
     time: "[Start Time] to [End Time]",
     venue: "[Location Name, Address] / [Virtual Platform Link]",
   },
-  {
-    title: "FIELD TRIP",
-    posted: "June 1, 2026",
-    message:
-      "Dear Parents and Guardians, We are excited to announce an upcoming educational field trip for [Grade Level/Class] students to [Destination] on [Date]. This trip is designed to complement our current curriculum in [Subject] by providing students with hands-on, real-world experiences outside the classroom.",
-    date: "[Day of week], [Month, Date, Year]",
-    time: "[Start Time] to [End Time]",
-    venue: "[Location Name, Address] / [Virtual Platform Link]",
-  },
 ]
+
+const FALLBACK_STUDENT = {
+  lastName: "SANTIAGO",
+  firstName: "Maria Margarett",
+  lrn: null,
+  studentId: "GCA-S01",
+  sy: "2025 - 2026",
+  classSchedule: "Monday - Thursday",
+  gradeLevel: "Nursery",
+  room: "Mahogany - 3",
+  classTime: "7:00 AM - 11:00 AM",
+  adviser: "Ms. Rosary Mendez",
+};
 
 const ParentsDashboard = () => {
   const scrollRef = useRef(null);
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [spin, setSpin] = useState(false);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const handleScroll = () => {
-      const idx = Math.round(el.scrollLeft / el.clientWidth);
-      setActiveIndex(Math.min(idx, announcements.length - 1));
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        setStudents(Array.isArray(response.data) ? response.data : []);
+      } 
+      catch (error) {
+        console.error("Failed to fetch students:", error);
+      } 
+      finally {
+        setLoading(false);
+      }
     };
 
-    el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
+    fetchStudents();
+  }, []);
+
+  const student = students[0] || FALLBACK_STUDENT;
+
+  useEffect(() => {
+    const element = scrollRef.current;
+    if (!element) return;
+    const handleScroll = () => {
+      const index = Math.round(
+        element.scrollLeft / element.clientWidth
+      );
+      setActiveIndex(Math.min(index, announcements.length - 1));
+    };
+
+    element.addEventListener("scroll", handleScroll);
+    return () => {
+      element.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <div className="min-h-screen bg-bone px-5 py-6 font-[Poppins] cursor-default">
+    <div className="min-h-screen bg-[#ebe9e4] px-5 py-6 font-[Poppins] cursor-default">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
 
         {/* Student */}
-        <div className="flex flex-col gap-4 rounded-3xl border border-swamp-green/10 bg-white p-6 shadow-sm">
+        <div className="flex flex-col gap-4 rounded-3xl">
           <div className="flex items-center gap-3">
-            <h2 className="text-sm font-[PoppinsBold] text-gray-500 md:text-xl">
-              Student Information
-            </h2>
+            
           </div>
-          <StudentInfo student={student} spin={spin} setSpin={setSpin} infoFields={INFO_FIELDS} summaryFields={SUMMARY_FIELDS} />
+          {loading ? (
+            <div className="flex h-64 items-center justify-center rounded-3xl bg-white text-sm text-gray-500">
+              Pls wait...
+            </div>
+          ) : (
+            <StudentInfo
+              student={student}
+              spin={spin}
+              setSpin={setSpin}
+              infoFields={INFO_FIELDS}
+              idFields={ID_FIELDS}
+              schoolYearField={SCHOOL_YEAR_FIELD}
+            />
+          )}
         </div>
 
-        <span className="mx-auto max-w-7xl w-full text-sm font-[PoppinsBold] text-swamp-green py-8 sm:text-lg md:text-xl">
-          Announcements
+        <span className="mx-auto max-w-7xl w-full text-sm font-[PoppinsBold] text-swamp-green sm:text-lg md:text-md uppercase">
+          Recent Announcements
         </span>
         <div ref={scrollRef} className="mx-auto max-w-7xl w-full overflow-x-auto lg:overflow-visible no-scrollbar snap-mandatory transition-smooth">
           <div className="flex gap-4 lg:grid lg:grid-cols-2 lg:gap-5">

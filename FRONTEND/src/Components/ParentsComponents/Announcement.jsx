@@ -9,7 +9,7 @@ const Announcement = ({ title, posted, message, date, time, venue }) => {
           <h2 className="text-xs font-[PoppinsBold] text-swamp-green sm:text-sm lg:text-lg">
             {title}
           </h2>
-          <span className="shrink-0 whitespace-nowrap text-2xs text-ashlight sm:text-xs lg:text-sm">
+          <span className="shrink-0 whitespace-nowrap text-2xs text-red-900 sm:text-xs lg:text-sm">
             Posted on: {posted}
           </span>
         </div>
@@ -18,7 +18,7 @@ const Announcement = ({ title, posted, message, date, time, venue }) => {
           {message}
         </p>
 
-        <ul className="list-disc space-y-1 pl-4 text-[11px] text-ashlight sm:text-sm lg:text-base">
+        <ul className="list-disc space-y-2 pl-4 text-[11px] py-3 text-ashlight sm:text-sm lg:text-base">
           <li>Date: {date}</li>
           <li>Time: {time}</li>
           <li>Venue: {venue}</li>

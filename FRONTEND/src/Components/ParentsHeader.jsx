@@ -26,7 +26,7 @@ const ParentsHeader = () => {
         <GreenButton onClick={() => navigate("/tuition")} Label={"Login"} />
       </div>
 
-      <div className="relative z-50 hidden h-20 w-full items-center justify-between bg-bone p-5 px-10 text-xs inset-shadow-med lg:flex">
+      <div className="relative z-50 hidden h-20 w-full items-center justify-between bg-[#0c2423] p-5 px-10 text-xs inset-shadow-med lg:flex">
         <span className="flex items-center gap-x-5">
           <img
             src="/assets/logowbg.png"
@@ -34,10 +34,10 @@ const ParentsHeader = () => {
             className="h-8 rounded-full lg:h-12"
           />
           <Link to="/">
-            <h1 className="text-sm tracking-[0.30em] text-ashlight">
+            <h1 className="text-sm tracking-[0.30em] text-bone">
               Grace Christian Academy Cavite Inc. <br />
             </h1>
-            <span className="font-[PoppinsBold] text-base text-egg-dark">
+            <span className="font-[PoppinsBold] text-base text-bone">
               Grace Christian Academy
             </span>
           </Link>
@@ -47,7 +47,7 @@ const ParentsHeader = () => {
           <NavLink
             to="/parents"
             className={({ isActive }) =>
-              `${isActive ? "text-swamp-green" : "text-ashlight"} flex items-center gap-x-2 font-[PoppinsBold] tracking-wide`
+              `${isActive ? "text-swamp-green" : "text-bone"} flex items-center gap-x-2 font-[PoppinsBold] tracking-wide`
             }
           >
             <LayoutDashboard size={18} />
@@ -58,7 +58,7 @@ const ParentsHeader = () => {
           <div className="relative">
             <button
               onClick={() => setUserMenu(!userMenu)}
-              className="flex items-center gap-x-2 text-ashlight"
+              className="flex items-center gap-x-2 text-bone"
             >
               <User size={18} />
               <span className="font-[PoppinsBold]">Rosamanta</span>
