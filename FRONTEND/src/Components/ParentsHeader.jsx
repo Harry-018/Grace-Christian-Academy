@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   User,
   ChevronDown,
   Home,
-  ClipboardList,
   ShieldCheck,
   LogOut,
 } from "lucide-react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // BACKEND VALUES — edit these only
 const SCHOOL = {
@@ -16,7 +16,7 @@ const SCHOOL = {
   fullName: "Grace Christian Academy Cavite Inc.",
 };
 
-const USER = {
+const DEFAULT_USER = {
   name: "Rosamanta",
   role: "Parent Account",
   dashboardUrl: "/parents",
@@ -24,13 +24,29 @@ const USER = {
 };
 
 const MENU_ITEMS = [
-  { to: "/parents/grades", label: "Grades", Icon: ClipboardList },
   { to: "/parents/security", label: "Account Settings", Icon: ShieldCheck },
 ];
 
 const ParentsHeader = () => {
   const [userMenu, setUserMenu] = useState(false);
+  const [user, setUser] = useState(DEFAULT_USER);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchUser = async () => {
+      try {
+        const { data } = await axios.get(API_URL);
+        if (mounted && data) setUser(data);
+      } catch {
+        // Backend not ready yet — keep the default user.
+      }
+    };
+    fetchUser();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <div className="font-[Poppins]">
@@ -62,7 +78,7 @@ const ParentsHeader = () => {
         {/* Right side */}
         <span className="flex items-center gap-x-10 px-5 md:gap-x-8">
           <NavLink
-            to={USER.dashboardUrl}
+            to={user.dashboardUrl}
             end
             className={({ isActive }) =>
               `${isActive ? "text-swamp-green font-[PoppinsBold]" : "text-gray-600 hover:text-swamp-green"} flex items-center gap-x-2 font-[PoppinsBold] tracking-wide transition-colors duration-300`
@@ -80,7 +96,7 @@ const ParentsHeader = () => {
             >
               <User size={20} />
               <span className="hidden font-[PoppinsBold] sm:inline">
-                {USER.name}
+                {user.name}
               </span>
               <ChevronDown
                 size={20}
@@ -93,8 +109,8 @@ const ParentsHeader = () => {
             {userMenu && (
               <div className="absolute right-0 top-full py-2 w-52 overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg">
                 <div className="border-b border-gray-100 px-4 py-3">
-                  <p className="font-[PoppinsBold] text-gray-800">{USER.name}</p>
-                  <p className="text-[11px] text-gray-400">{USER.role}</p>
+                  <p className="font-[PoppinsBold] text-gray-800">{user.name}</p>
+                  <p className="text-[11px] text-gray-400">{user.role}</p>
                 </div>
 
                 {MENU_ITEMS.map(({ to, label, Icon }) => (
@@ -112,7 +128,7 @@ const ParentsHeader = () => {
                 ))}
 
                 <button
-                  onClick={() => navigate(USER.logoutUrl)}
+                  onClick={() => navigate(user.logoutUrl)}
                   className="flex w-full items-center gap-x-2 border-t border-gray-100 px-4 py-3 text-red-500 hover:bg-bone"
                 >
                   <LogOut size={16} />
